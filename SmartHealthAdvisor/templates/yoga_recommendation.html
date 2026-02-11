@@ -1,0 +1,496 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>Yoga Studio | SwasthyaAI</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+
+    <style>
+        body { font-family: 'Poppins', sans-serif; scroll-behavior: smooth; }
+       
+        /* Navbar Animation */
+        .nav-link { position: relative; }
+        .nav-link::after {
+            content: ''; position: absolute; width: 0; height: 2px; bottom: -2px; left: 0;
+            background-color: #16a34a; transition: width 0.3s ease;
+        }
+        .nav-link:hover::after { width: 100%; }
+
+
+        /* Card Hover */
+        .yoga-card:hover { transform: translateY(-5px); transition: all 0.3s ease; }
+
+
+        /* Steps Dropdown Animation */
+        .steps-container {
+            max-height: 0; overflow: hidden;
+            transition: max-height 0.4s ease-out, opacity 0.4s ease-out;
+            opacity: 0;
+        }
+        .steps-container.open { max-height: 500px; opacity: 1; }
+
+
+        @media (prefers-reduced-motion: reduce) {
+            * { animation: none !important; transition: none !important; }
+        }
+    </style>
+</head>
+
+
+<body class="bg-gradient-to-br from-[#f6f9f7] to-[#eef5f1] text-gray-800 min-h-screen flex flex-col">
+
+
+    <nav class="flex justify-between items-center px-6 md:px-10 py-3 bg-white/90 backdrop-blur-md shadow-sm fixed w-full top-0 z-50">
+        <div class="flex items-center space-x-2 animate__animated animate__fadeInLeft">
+            <div class="bg-green-100 p-2 rounded-full shadow-sm text-lg">🌿</div>
+            <h1 class="text-xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-green-700 to-emerald-600">SwasthyaAI</h1>
+        </div>
+       
+        <ul class="hidden md:flex space-x-8 font-medium text-gray-600 text-sm animate__animated animate__fadeInDown">
+            <li><a href="{% url 'home' %}" class="nav-link hover:text-green-600 transition-colors">Home</a></li>
+            <li><a href="{% url 'dashboard' %}" class="nav-link hover:text-green-600 transition-colors">Dashboard</a></li>
+            <li><a href="{% url 'chatbot' %}" class="nav-link hover:text-green-600 transition-colors">AI Chatbot</a></li>
+            <li><a href="{% url 'prakriti_assessment' %}" class="nav-link hover:text-green-600 transition-colors">Prakriti Quiz</a></li>
+            <li><a href="{% url 'personalized_diet_and_lifestyle' %}" class="nav-link hover:text-green-600 transition-colors">Diet & Lifestyle</a></li>
+            <li><a href="{% url 'yoga_recommendation' %}" class="text-green-700 font-bold border-b-2 border-green-600">Yoga & Wellness</a></li>
+        </ul>
+
+
+        <div class="flex items-center gap-4 animate__animated animate__fadeInRight">
+            <div class="h-8 w-8 bg-green-200 rounded-full flex items-center justify-center text-green-700 font-bold text-xs cursor-default">
+                {{ user.username|slice:":1"|upper }}
+            </div>
+            <a href="{% url 'logout' %}" class="text-red-500 font-semibold text-xs hover:underline">Logout</a>
+        </div>
+    </nav>
+
+
+    <section id="selection-section" class="pt-32 pb-20 px-4 flex-grow flex flex-col items-center justify-center animate__animated animate__fadeIn">
+        <div class="max-w-2xl w-full text-center bg-white p-10 rounded-3xl shadow-xl border border-green-50 relative">
+            <h2 class="text-4xl font-extrabold text-green-900 mb-4">Personalized Yoga Path</h2>
+            <p class="text-gray-600 mb-8 text-lg">Select your primary Dosha to unlock a video-guided sequence designed for your balance.</p>
+
+
+            <div class="relative inline-block w-full max-w-xs text-left">
+                <select id="dosha-select" data-user-dosha="{{ user_dosha|default:'' }}" class="block appearance-none w-full bg-gray-50 border border-gray-200 text-gray-700 py-4 px-6 pr-8 rounded-2xl leading-tight focus:outline-none focus:bg-white focus:border-green-500 transition-all shadow-sm font-semibold cursor-pointer hover:bg-gray-100">
+                    <option value="">-- Choose Your Dosha --</option>
+                    <option value="Vata">Vata (Air & Space)</option>
+                    <option value="Pitta">Pitta (Fire & Water)</option>
+                    <option value="Kapha">Kapha (Earth & Water)</option>
+                    <option value="Vata-Pitta">Vata-Pitta</option>
+                    <option value="Pitta-Kapha">Pitta-Kapha</option>
+                    <option value="Vata-Kapha">Vata-Kapha</option>
+                    <option value="Tridoshic">Tridoshic (Balanced)</option>
+                </select>
+                <div class="pointer-events-none absolute inset-y-0 right-0 flex items-center px-4 text-gray-500"><i class="fas fa-chevron-down text-xs"></i></div>
+            </div>
+
+
+            <p id="dosha-error" class="hidden text-red-500 text-sm mt-4 font-medium animate__animated animate__shakeX">
+                <i class="fas fa-exclamation-circle mr-1"></i> Please select a Dosha type to continue.
+            </p>
+
+
+            <button onclick="showYoga()" class="block w-full max-w-xs mx-auto mt-8 bg-green-600 text-white font-bold py-4 rounded-2xl shadow-lg hover:bg-green-700 transform hover:scale-105 transition-all">
+                Reveal My Yoga Plan <i class="fas fa-arrow-right ml-2"></i>
+            </button>
+        </div>
+    </section>
+
+
+    <section id="yoga-section" class="hidden pt-32 pb-20 px-6 md:px-16 animate__animated animate__fadeIn">
+        <div class="max-w-7xl mx-auto">
+            <div class="flex flex-col items-start mb-12">
+                <h2 id="result-title" class="text-4xl font-bold text-green-800 mb-2"></h2>
+                <div class="inline-flex items-center bg-green-50 text-green-800 px-4 py-2 rounded-lg text-sm font-medium border border-green-100">
+                    <i class="fas fa-info-circle mr-2"></i>
+                    <span id="dosha-desc">Loading advice...</span>
+                </div>
+            </div>
+
+
+            <div id="yoga-cards" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8"></div>
+
+
+            <div class="text-center mt-16">
+                <button onclick="goBack()" class="bg-white text-gray-600 border border-gray-200 px-10 py-3 rounded-full font-bold shadow-md hover:bg-gray-50 transition-all group">
+                    <i class="fas fa-arrow-left mr-2 group-hover:-translate-x-1 transition-transform"></i> Change My Selection
+                </button>
+            </div>
+        </div>
+    </section>
+
+
+    <div id="video-modal" class="fixed inset-0 z-[60] hidden bg-black/90 backdrop-blur-sm items-center justify-center p-4 transition-opacity duration-300 opacity-0" aria-hidden="true">
+        <div class="relative w-full max-w-4xl bg-black rounded-2xl overflow-hidden shadow-2xl transform transition-transform scale-95" id="video-modal-content">
+            <button onclick="closeVideoModal()" class="absolute top-4 right-4 z-10 bg-black/50 hover:bg-red-600 text-white w-10 h-10 rounded-full flex items-center justify-center transition-colors"><i class="fas fa-times"></i></button>
+            <div class="aspect-video w-full"><iframe id="modal-iframe" class="w-full h-full" src="" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe></div>
+        </div>
+    </div>
+
+
+    <div id="image-modal" class="fixed inset-0 z-[70] hidden bg-black/95 backdrop-blur-md items-center justify-center p-4 transition-opacity duration-300 opacity-0" aria-hidden="true" onclick="closeImageModal()">
+        <div class="relative max-w-5xl max-h-screen p-2 transform transition-transform scale-95" id="image-modal-content" onclick="event.stopPropagation()">
+            <button onclick="closeImageModal()" class="absolute -top-12 right-0 md:-right-12 text-white/70 hover:text-white text-3xl transition-colors"><i class="fas fa-times"></i></button>
+            <img id="modal-image-element" src="" class="max-w-full max-h-[85vh] rounded-lg shadow-2xl border border-white/10" alt="Full size yoga pose">
+        </div>
+    </div>
+
+
+    <script>
+    const yogaData = {
+        "Vata": [
+            {
+                name: "Balasana (Child's Pose)",
+                desc: "Deeply grounding and calming for the active Vata mind.",
+                time: "5 mins",
+                img: "/static/assets/balasana.png",
+                video: "https://www.youtube.com/watch?v=2MJGg-dUKh0",
+                steps: ["Kneel on the floor, toes together.", "Sit on your heels, separate knees hip-width.", "Exhale and lay your torso down between thighs.", "Rest arms forward or alongside your body."]
+            },
+            {
+                name: "Tadasana (Mountain Pose)",
+                desc: "Focuses on stability and building a strong foundation.",
+                time: "3 mins",
+                img: "/static/assets/tadasana.png",
+                video: "https://www.youtube.com/watch?v=Z3HnO3r2LZQ",
+                steps: ["Stand with feet together, toes touching.", "Distribute weight evenly across both feet.", "Engage thighs, lift kneecaps, tuck tailbone.", "Lengthen spine, relax shoulders down."]
+            },
+            {
+                name: "Paschimottanasana",
+                desc: "A soothing forward fold to balance nervous energy.",
+                time: "5 mins",
+                img: "/static/assets/paschimottanasana.png",
+                video: "https://www.youtube.com/watch?v=T8sgVyF4Ux4",
+                steps: ["Sit with legs extended straight.", "Inhale and lengthen your spine.", "Exhale, hinge at hips to fold forward.", "Hold feet or shins, keeping neck relaxed."]
+            },
+            {
+                name: "Savasana (Corpse Pose)",
+                desc: "Complete relaxation to calm the nervous system.",
+                time: "10 mins",
+                img: "/static/assets/savasana.png",
+                video: "https://www.youtube.com/watch?v=1xRX1MuoImw",
+                steps: ["Lie flat on your back.", "Let feet fall open, arms by sides.", "Close eyes and deepen your breath.", "Relax every muscle from head to toe."]
+            },
+            {
+                name: "Vrikshasana (Tree Pose)",
+                desc: "Improves balance and focus while grounding the mind.",
+                time: "5 mins",
+                img: "/static/assets/vrikshasana.png",
+                video: "https://www.youtube.com/watch?v=wdlbZqqY0hU",
+                steps: ["Shift weight to left foot.", "Place right foot on left inner thigh/calf.", "Bring hands to prayer at chest.", "Find a focal point and breathe steadily."]
+            }
+        ],
+        "Pitta": [
+            {
+                name: "Bhujangasana (Cobra)",
+                desc: "Gentle heart opener to balance intense emotions.",
+                time: "5 mins",
+                img: "/static/assets/bhujangasana.png",
+                video: "https://www.youtube.com/watch?v=fOdrW7nf9gw",
+                steps: ["Lie on stomach, hands under shoulders.", "Press tops of feet into mat.", "Inhale, lift chest gently.", "Keep elbows hugged into ribs."]
+            },
+            {
+                name: "Matsyasana (Fish Pose)",
+                desc: "Expands the lungs and cools the internal system.",
+                time: "5 mins",
+                img: "/static/assets/matsyasana.png",
+                video: "https://www.youtube.com/watch?v=Zz0JtY3uQqM",
+                steps: ["Lie on back, hands under hips.", "Press forearms down, lift chest.", "Rest crown of head lightly on floor.", "Breathe deeply into chest."]
+            },
+            {
+                name: "Sarvangasana (Shoulderstand)",
+                desc: "Calms the brain and relieves stress.",
+                time: "5 mins",
+                img: "/static/assets/sarvangasana.png",
+                video: "https://www.youtube.com/watch?v=vjLJX3J1aIY",
+                steps: ["Lie on back, lift legs and hips.", "Support lower back with hands.", "Keep legs straight up.", "Breathe and gaze at toes."]
+            },
+            {
+                name: "Sitali Pranayama",
+                desc: "Cooling breath practice to reduce body heat.",
+                time: "5 mins",
+                img: "/static/assets/sitali.png",
+                video: "https://www.youtube.com/watch?v=1xRX1MuoImw",
+                steps: ["Sit comfortably with straight spine.", "Roll tongue into a tube shape.", "Inhale deeply through the tongue.", "Exhale slowly through the nose."]
+            },
+            {
+                name: "Chandra Namaskar",
+                desc: "Cooling flow that honors the moon's soothing energy.",
+                time: "15 mins",
+                img: "/static/assets/chandra_namaskar.png",
+                video: "https://www.youtube.com/watch?v=2Zk7a0Qe4x8",
+                steps: ["Move slowly through the moon salutation sequence.", "Focus on fluid, cooling movements.", "Avoid building excessive heat.", "Coordinate breath with movement."]
+            }
+        ],
+        "Kapha": [
+            {
+                name: "Surya Namaskar",
+                desc: "Increases circulation and fires up the metabolism.",
+                time: "15 mins",
+                img: "/static/assets/surya_namaskar.png",
+                video: "https://www.youtube.com/watch?v=9k0D8X7hGfA",
+                steps: ["Stand in prayer pose.", "Inhale arms up, exhale fold.", "Step back to plank, lower down.", "Inhale Cobra, exhale Down Dog.", "Step forward and rise."]
+            },
+            {
+                name: "Ustrasana (Camel Pose)",
+                desc: "Powerful energizer to counter Kapha lethargy.",
+                time: "5 mins",
+                img: "/static/assets/ustrasana.png",
+                video: "https://www.youtube.com/watch?v=4j33dxb9y5I",
+                steps: ["Kneel with knees hip-width apart.", "Place hands on lower back.", "Inhale, lift chest to ceiling.", "Lean back and reach for heels if possible."]
+            },
+            {
+                name: "Virabhadrasana (Warrior I)",
+                desc: "Builds stamina, heat, and internal strength.",
+                time: "5 mins",
+                img: "/static/assets/virabhadrasana.png",
+                video: "https://www.youtube.com/watch?v=1xRX1MuoImw",
+                steps: ["Step one foot back, bend front knee.", "Turn back foot 45 degrees.", "Raise arms overhead.", "Square hips forward."]
+            },
+            {
+                name: "Dhanurasana (Bow Pose)",
+                desc: "Energizes the back and aids digestion.",
+                time: "5 mins",
+                img: "/static/assets/dhanurasana.png",
+                video: "https://www.youtube.com/watch?v=6pF6cE3nK9U",
+                steps: ["Lie on stomach, bend knees.", "Reach back and grab ankles.", "Inhale, kick legs back to lift chest.", "Balance on abdomen."]
+            },
+            {
+                name: "Adho Mukha Svanasana",
+                desc: "Rejuvenates the body and calms the brain.",
+                time: "5 mins",
+                img: "/static/assets/adho_mukha_svanasana.png",
+                video: "https://www.youtube.com/watch?v=6pF6cE3nK9U",
+                steps: ["Start on hands and knees.", "Lift hips up and back.", "Straighten legs and arms.", "Press heels toward floor."]
+            }
+        ],
+        "Tridoshic": [
+            {
+                name: "Marjaryasana-Bitilasana",
+                desc: "Gentle spinal movement to balance all three doshas.",
+                time: "5 mins",
+                img: "/static/assets/marjaryasana-bitilasana.png",
+                video: "https://www.youtube.com/watch?v=kqnua4rHVVA",
+                steps: ["Start in tabletop position.", "Inhale, drop belly, look up (Cow).", "Exhale, round spine, look at navel (Cat).", "Repeat with breath."]
+            },
+            {
+                name: "Trikonasana (Triangle)",
+                desc: "Total surrender for complete integration of health.",
+                time: "10 mins",
+                img: "/static/assets/trikonasana.png",
+                video: "https://www.youtube.com/watch?v=1VYlOKUdylM",
+                steps: ["Wide stance, turn right foot out.", "Reach right arm forward.", "Tilt down, hand to shin or floor.", "Extend left arm up, gaze at thumb."]
+            },
+            {
+                name: "Nadi Shodhana",
+                desc: "A balanced flow for daily maintenance.",
+                time: "10 mins",
+                img: "/static/assets/nadi_shodhana.png",
+                video: "https://www.youtube.com/watch?v=4pKly2JojMw",
+                steps: ["Sit comfortably.", "Close right nostril with thumb.", "Inhale left.", "Close left, exhale right.", "Inhale right, exhale left."]
+            },
+            {
+                name: "Setu Bandhasana (Bridge)",
+                desc: "Calms the brain and rejuvenates legs.",
+                time: "5 mins",
+                img: "/static/assets/setu_bandhasana.png",
+                video: "https://www.youtube.com/watch?v=kqnua4rHVVA",
+                steps: ["Lie on back, knees bent.", "Feet hip-width apart.", "Press feet down, lift hips up.", "Clasp hands under back."]
+            },
+            {
+                name: "Ardha Matsyendrasana",
+                desc: "Stimulates liver and kidneys.",
+                time: "5 mins",
+                img: "/static/assets/ardha_matsyendrasana.png",
+                video: "https://www.youtube.com/watch?v=kqnua4rHVVA",
+                steps: ["Sit with legs straight.", "Bend right knee, cross over left leg.", "Twist torso to the right.", "Hug knee with left arm."]
+            }
+        ]
+    };
+
+
+    const doshaDescriptions = {
+        "Vata": "Grounding and warming asanas to calm the active mind.",
+        "Pitta": "Cooling and relaxing postures to reduce internal heat.",
+        "Kapha": "Energizing flows to boost metabolism and energy.",
+        "Vata-Pitta": "Stabilizing poses to balance variable energy.",
+        "Pitta-Kapha": "Moderate flows to cool heat and stimulate digestion.",
+        "Vata-Kapha": "Warming poses to counter cold and heaviness.",
+        "Tridoshic": "Balanced routine for overall harmony."
+    };
+
+
+    document.addEventListener("DOMContentLoaded", () => {
+        const select = document.getElementById("dosha-select");
+        const userDosha = select.dataset.userDosha;
+        if (userDosha && userDosha !== "None" && userDosha !== "") {
+            select.value = userDosha;
+            setTimeout(showYoga, 100);
+        }
+    });
+
+
+    function showYoga(){
+        const dosha = document.getElementById("dosha-select").value;
+        const errorMsg = document.getElementById("dosha-error");
+       
+        if(!dosha){ errorMsg.classList.remove("hidden"); return; }
+        errorMsg.classList.add("hidden");
+
+
+        document.getElementById("selection-section").classList.add("hidden");
+        document.getElementById("yoga-section").classList.remove("hidden");
+        document.getElementById("result-title").innerText = `${dosha} Balancing Sequence`;
+        document.getElementById("dosha-desc").innerText = doshaDescriptions[dosha] || "Balanced routine.";
+       
+        // Handle dual doshas by mapping to closest single or tridoshic if specific data missing
+        let dataToDisplay = yogaData[dosha];
+        if (!dataToDisplay) {
+            // Fallback logic for combinations
+            if (dosha === "Vata-Pitta") dataToDisplay = [...yogaData["Vata"].slice(0,3), ...yogaData["Pitta"].slice(0,2)];
+            else if (dosha === "Pitta-Kapha") dataToDisplay = [...yogaData["Pitta"].slice(0,3), ...yogaData["Kapha"].slice(0,2)];
+            else if (dosha === "Vata-Kapha") dataToDisplay = [...yogaData["Vata"].slice(0,3), ...yogaData["Kapha"].slice(0,2)];
+            else dataToDisplay = yogaData["Tridoshic"];
+        }
+       
+        displayCards(dataToDisplay);
+    }
+
+
+    function displayCards(data){
+        const container = document.getElementById("yoga-cards");
+        container.innerHTML = "";
+       
+        data.forEach((yoga, index) => {
+            const delay = index * 100;
+            const stepsList = yoga.steps ? yoga.steps.map(s => `<li class="mb-2 flex items-start"><span class="text-green-500 mr-2">➜</span><span>${s}</span></li>`).join("") : "<li>Follow video instructions.</li>";
+
+
+            container.innerHTML += `
+            <div class="yoga-card bg-white rounded-3xl shadow-lg overflow-hidden border border-gray-100 animate__animated animate__fadeInUp" style="animation-delay: ${delay}ms">
+               
+                <div class="relative h-56 overflow-hidden bg-gray-100 group">
+                    <img src="${yoga.img}" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" onerror="this.onerror=null; this.src='https://placehold.co/600x400?text=Asana'">
+                   
+                    <button onclick="saveFavorite('${yoga.name}'); event.stopPropagation();" title="Save to Dashboard" class="absolute top-4 right-4 bg-white/90 p-2 rounded-full shadow hover:bg-red-50 hover:text-red-500 transition-all z-20">
+                        <i class="far fa-heart text-lg"></i>
+                    </button>
+                   
+                    <div class="absolute inset-0 bg-black/30 group-hover:bg-black/40 transition flex items-center justify-center opacity-0 group-hover:opacity-100">
+                         <button onclick="openImageModal('${yoga.img}')" class="bg-white text-gray-800 font-bold py-2 px-5 rounded-full shadow-lg hover:scale-105 transition flex items-center gap-2">
+                            <i class="fas fa-eye text-green-600"></i> View Image
+                         </button>
+                    </div>
+                </div>
+               
+                <div class="p-6">
+                    <h3 class="text-xl font-bold text-gray-800 mb-2 truncate" title="${yoga.name}">${yoga.name}</h3>
+                    <p class="text-gray-600 text-sm mb-4 leading-relaxed line-clamp-2 h-10">${yoga.desc}</p>
+                   
+                    <div class="flex items-center justify-between mb-4">
+                        <span class="text-xs font-bold text-green-600 bg-green-50 px-3 py-1 rounded-full">
+                            <i class="far fa-clock mr-1"></i> ${yoga.time}
+                        </span>
+                    </div>
+
+
+                    <div class="mb-5 border-t border-gray-100 pt-3">
+                        <button onclick="toggleSteps(this)" class="w-full flex justify-between items-center text-xs font-bold text-gray-500 hover:text-green-600 focus:outline-none transition-colors">
+                            <span>HOW TO PERFORM</span>
+                            <i class="fas fa-chevron-down transition-transform duration-300"></i>
+                        </button>
+                        <ul class="steps-container text-sm text-gray-600 mt-2 pl-1 space-y-1">
+                            ${stepsList}
+                        </ul>
+                    </div>
+                   
+                    <button onclick="openVideoModal('${yoga.video}')" class="flex items-center justify-center w-full bg-green-600 text-white font-bold py-3 rounded-xl shadow-lg hover:bg-green-700 hover:shadow-green-600/30 transition-all transform hover:-translate-y-1">
+                        <i class="fas fa-play mr-2 text-sm"></i> Start Practice
+                    </button>
+                </div>
+            </div>`;
+        });
+    }
+
+
+    function toggleSteps(btn) {
+        const list = btn.nextElementSibling;
+        const icon = btn.querySelector("i");
+        if (list.classList.contains("open")) {
+            list.classList.remove("open");
+            icon.style.transform = "rotate(0deg)";
+        } else {
+            list.classList.add("open");
+            icon.style.transform = "rotate(180deg)";
+        }
+    }
+
+
+    function openVideoModal(url) {
+        let embedUrl = url;
+        if (url.includes("watch?v=")) embedUrl = url.replace("watch?v=", "embed/");
+        else if(url.includes("youtu.be/")) embedUrl = url.replace("youtu.be/", "youtube.com/embed/");
+
+
+        const iframe = document.getElementById("modal-iframe");
+        const modal = document.getElementById("video-modal");
+        const content = document.getElementById("video-modal-content");
+        iframe.src = embedUrl + "?autoplay=1&rel=0";
+        modal.classList.remove("hidden");
+        modal.classList.add("flex");
+        setTimeout(() => { modal.classList.remove("opacity-0"); content.classList.remove("scale-95"); content.classList.add("scale-100"); }, 10);
+    }
+
+
+    function closeVideoModal() {
+        const modal = document.getElementById("video-modal");
+        const content = document.getElementById("video-modal-content");
+        modal.classList.add("opacity-0"); content.classList.remove("scale-100"); content.classList.add("scale-95");
+        setTimeout(() => { modal.classList.add("hidden"); modal.classList.remove("flex"); document.getElementById("modal-iframe").src = ""; }, 300);
+    }
+
+
+    function openImageModal(imgUrl) {
+        const modal = document.getElementById("image-modal");
+        const content = document.getElementById("image-modal-content");
+        document.getElementById("modal-image-element").src = imgUrl;
+        modal.classList.remove("hidden");
+        modal.classList.add("flex");
+        setTimeout(() => { modal.classList.remove("opacity-0"); content.classList.remove("scale-95"); content.classList.add("scale-100"); }, 10);
+    }
+
+
+    function closeImageModal() {
+        const modal = document.getElementById("image-modal");
+        const content = document.getElementById("image-modal-content");
+        modal.classList.add("opacity-0"); content.classList.remove("scale-100"); content.classList.add("scale-95");
+        setTimeout(() => { modal.classList.add("hidden"); modal.classList.remove("flex"); }, 300);
+    }
+
+
+    function saveFavorite(name){
+        let favs = JSON.parse(localStorage.getItem("favorites")) || [];
+        if(!favs.includes(name)){
+            favs.push(name);
+            localStorage.setItem("favorites", JSON.stringify(favs));
+            event.currentTarget.innerHTML = '<i class="fas fa-heart text-red-500"></i>';
+        }
+    }
+
+
+    function goBack(){
+        document.getElementById("yoga-section").classList.add("hidden");
+        document.getElementById("selection-section").classList.remove("hidden");
+        document.getElementById("dosha-error").classList.add("hidden");
+        closeVideoModal();
+    }
+    </script>
+</body>
+</html>

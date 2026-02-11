@@ -1,0 +1,422 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Prakriti Assessment | SwasthyaAI</title>
+
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
+    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+    <style>
+        body { font-family: 'Poppins', sans-serif; background-color: #f8fafc; }
+       
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar { width: 8px; }
+        ::-webkit-scrollbar-track { background: #f1f1f1; }
+        ::-webkit-scrollbar-thumb { background: #16a34a; border-radius: 4px; }
+        ::-webkit-scrollbar-thumb:hover { background: #15803d; }
+
+        /* Card Selection Styling */
+        input[type="radio"]:checked + div {
+            border-color: #16a34a;
+            background-color: #f0fdf4;
+            box-shadow: 0 4px 6px -1px rgba(22, 163, 74, 0.1), 0 2px 4px -1px rgba(22, 163, 74, 0.06);
+        }
+        input[type="radio"]:checked + div .check-icon {
+            opacity: 1;
+            transform: scale(1);
+        }
+
+        /* Smooth Fade In */
+        .fade-in { animation: fadeIn 0.5s ease-in-out; }
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+    </style>
+</head>
+
+<body class="bg-gradient-to-br from-green-50 to-emerald-100 min-h-screen">
+
+    <nav class="flex justify-between items-center px-6 md:px-10 py-4 bg-white/90 backdrop-blur-md shadow-sm sticky top-0 z-40">
+        <div class="flex items-center space-x-2">
+            <div class="bg-green-100 p-2 rounded-full shadow-sm text-xl">🌿</div>
+            <h1 class="text-xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-green-700 to-emerald-600">SwasthyaAI</h1>
+        </div>
+       
+        <ul class="hidden md:flex space-x-8 font-medium text-gray-600 text-sm">
+            <li><a href="{% url 'home' %}" class="hover:text-green-600 transition-colors">Home</a></li>
+            <li><a href="{% url 'dashboard' %}" class="hover:text-green-600 transition-colors">Dashboard</a></li>
+            <li><a href="{% url 'prakriti_assessment' %}" class="text-green-700 font-bold border-b-2 border-green-600">Prakriti Quiz</a></li>
+        </ul>
+
+        <div class="h-9 w-9 bg-green-200 rounded-full flex items-center justify-center text-green-800 font-bold shadow-sm border border-green-300">
+            {% if request.session.user %}{{ request.session.user|slice:":1" }}{% else %}?{% endif %}
+        </div>
+    </nav>
+
+    <div class="container mx-auto px-4 py-8 max-w-4xl">
+       
+        <div class="bg-white rounded-2xl shadow-lg overflow-hidden mb-8 animate__animated animate__fadeInDown">
+            <div class="bg-green-600 h-2 w-full"></div>
+            <div class="p-8 text-center">
+                <h1 class="text-3xl font-bold text-gray-800 mb-3">Discover Your Ayurvedic Body Type</h1>
+                <p class="text-gray-600 max-w-2xl mx-auto">
+                    Answer these 20 questions to reveal your unique <strong>Prakriti</strong> (Vata, Pitta, or Kapha).
+                    This will help us personalize your diet and yoga plan.
+                </p>
+            </div>
+        </div>
+
+        <div class="sticky top-20 z-30 bg-white/80 backdrop-blur rounded-full h-4 mb-8 border border-green-100 overflow-hidden shadow-sm">
+            <div id="progress-bar" class="bg-gradient-to-r from-green-400 to-green-600 h-full w-0 transition-all duration-500 ease-out rounded-full"></div>
+        </div>
+
+        <form id="prakriti-quiz" class="space-y-6">
+           
+            <div class="bg-white p-6 rounded-xl shadow-sm border border-gray-100">
+                <label class="block text-gray-700 font-semibold mb-2">What should we call you?</label>
+                <input type="text" placeholder="Enter your name" class="w-full px-4 py-3 rounded-lg border border-gray-300 focus:border-green-500 focus:ring-2 focus:ring-green-200 outline-none transition-all">
+            </div>
+
+            <div id="questions-container" class="space-y-8">
+                </div>
+
+            <div class="flex justify-between items-center pt-8 pb-20">
+                <button type="button" onclick="window.scrollTo({top:0, behavior:'smooth'})" class="text-gray-500 hover:text-green-600 font-medium px-4">
+                    Scroll to Top
+                </button>
+                <button type="button" onclick="calculatePrakriti()"
+                    class="bg-gradient-to-r from-green-600 to-green-700 hover:from-green-700 hover:to-green-800 text-white text-lg font-bold py-3 px-10 rounded-full shadow-lg transform hover:-translate-y-1 transition-all duration-200 ring-4 ring-green-100">
+                    Analyze My Prakriti ✨
+                </button>
+            </div>
+
+        </form>
+    </div>
+
+    <div id="result-modal" class="fixed inset-0 z-50 hidden flex items-center justify-center bg-black/60 backdrop-blur-sm p-4 transition-opacity duration-300 opacity-0">
+        <div class="bg-white rounded-3xl shadow-2xl w-full max-w-lg overflow-hidden transform scale-95 transition-transform duration-300" id="modal-content">
+           
+            <div class="bg-green-50 p-6 text-center border-b border-green-100 relative">
+                <button onclick="closeModal()" class="absolute top-4 right-4 text-gray-400 hover:text-gray-600 transition-colors">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>
+                </button>
+                <div class="inline-flex items-center justify-center w-16 h-16 bg-white rounded-full shadow-md mb-3 text-4xl animate__animated animate__bounceIn">
+                    🌿
+                </div>
+                <h2 class="text-2xl font-bold text-gray-800">Your Dominant Dosha</h2>
+                <p class="text-green-600 text-sm font-medium uppercase tracking-wider mt-1">Assessment Complete</p>
+            </div>
+
+            <div class="p-8 text-center">
+                <h1 id="result-title" class="text-4xl md:text-5xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-green-600 to-teal-600 mb-6 animate__animated animate__pulse animate__infinite">
+                </h1>
+               
+                <p class="text-gray-600 mb-6">
+                    We have customized a wellness plan based on your unique constitution. Choose an action below to proceed.
+                </p>
+
+                <div id="breakdown-container" class="space-y-3 mb-8 text-left bg-gray-50 p-4 rounded-xl text-sm">
+                </div>
+
+                <button onclick="saveAndGoDashboard()" 
+                    class="w-full flex items-center justify-center space-x-2 bg-gradient-to-r from-teal-600 to-green-600 hover:from-teal-700 hover:to-green-700 text-white font-bold py-3 px-6 rounded-xl shadow-md hover:shadow-lg transform hover:-translate-y-0.5 transition-all mb-4">
+                    <span class="text-xl">💾</span>
+                    <span>Reflect Result on Dashboard</span>
+                </button>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                    <a href="{% url 'personalized_diet_and_lifestyle' %}" class="flex items-center justify-center space-x-2 bg-green-100 hover:bg-green-200 text-green-800 font-semibold py-3 px-4 rounded-xl transition-all transform hover:-translate-y-0.5">
+                        <span>🥗</span>
+                        <span>Get Diet Plan</span>
+                    </a>
+                    <a href="{% url 'yoga_recommendation' %}" class="flex items-center justify-center space-x-2 bg-orange-100 hover:bg-orange-200 text-orange-800 font-semibold py-3 px-4 rounded-xl transition-all transform hover:-translate-y-0.5">
+                        <span>🧘</span>
+                        <span>Get Yoga Plan</span>
+                    </a>
+                </div>
+            </div>
+           
+            <div class="bg-gray-50 p-4 text-center border-t border-gray-100">
+                <button onclick="closeModal(); document.getElementById('prakriti-quiz').reset();" class="text-sm text-gray-500 hover:text-green-600 font-medium">
+                    ↻ Retake Assessment
+                </button>
+            </div>
+        </div>
+    </div>
+
+   <script>
+        const questions = [
+            // Physical Traits
+            { id: 1, text: "Body Frame", options: [
+                { val: 'vata', text: "Thin, bony, small frame" },
+                { val: 'pitta', text: "Medium build, muscular" },
+                { val: 'kapha', text: "Large, sturdy, heavy bone" }
+            ]},
+            { id: 2, text: "Skin Texture", options: [
+                { val: 'vata', text: "Dry, rough, cool" },
+                { val: 'pitta', text: "Oily, warm, sensitive" },
+                { val: 'kapha', text: "Thick, moist, smooth" }
+            ]},
+            { id: 3, text: "Weight Gain", options: [
+                { val: 'vata', text: "Hard to gain weight" },
+                { val: 'pitta', text: "Easy to maintain" },
+                { val: 'kapha', text: "Gains weight easily" }
+            ]},
+            { id: 4, text: "Hair Quality", options: [
+                { val: 'vata', text: "Dry, brittle, frizzy" },
+                { val: 'pitta', text: "Fine, early graying" },
+                { val: 'kapha', text: "Thick, lustrous, oily" }
+            ]},
+            { id: 5, text: "Eyes", options: [
+                { val: 'vata', text: "Small, active, dry" },
+                { val: 'pitta', text: "Sharp, piercing, sensitive to light" },
+                { val: 'kapha', text: "Large, calm, white sclera" }
+            ]},
+            { id: 6, text: "Joints", options: [
+                { val: 'vata', text: "Protruding, cracking noise" },
+                { val: 'pitta', text: "Flexible, medium" },
+                { val: 'kapha', text: "Large, well-padded" }
+            ]},
+           
+            // Physiological Traits
+            { id: 7, text: "Appetite", options: [
+                { val: 'vata', text: "Irregular, variable" },
+                { val: 'pitta', text: "Strong, unbearable if skipped" },
+                { val: 'kapha', text: "Steady but low" }
+            ]},
+            { id: 8, text: "Digestion", options: [
+                { val: 'vata', text: "Gas, bloating, constipation" },
+                { val: 'pitta', text: "Acidic, heartburn, loose stools" },
+                { val: 'kapha', text: "Slow, heavy feeling" }
+            ]},
+            { id: 9, text: "Thirst", options: [
+                { val: 'vata', text: "Scanty, irregular" },
+                { val: 'pitta', text: "Excessive, frequent" },
+                { val: 'kapha', text: "Low, rare" }
+            ]},
+            { id: 10, text: "Physical Activity", options: [
+                { val: 'vata', text: "Hyperactive, restless" },
+                { val: 'pitta', text: "Moderate, competitive" },
+                { val: 'kapha', text: "Slow, steady, lethargic" }
+            ]},
+            { id: 11, text: "Sleep Pattern", options: [
+                { val: 'vata', text: "Light, interrupted" },
+                { val: 'pitta', text: "Sound, short duration" },
+                { val: 'kapha', text: "Deep, heavy, excessive" }
+            ]},
+            { id: 12, text: "Walking Pace", options: [
+                { val: 'vata', text: "Fast, rushing" },
+                { val: 'pitta', text: "Medium, determined steps" },
+                { val: 'kapha', text: "Slow, leisurely" }
+            ]},
+            { id: 13, text: "Stool Habits", options: [
+                { val: 'vata', text: "Hard, dry, difficult" },
+                { val: 'pitta', text: "Soft, loose, frequent" },
+                { val: 'kapha', text: "Heavy, slow, regular" }
+            ]},
+
+            // Psychological Traits
+            { id: 14, text: "Mental Temperament", options: [
+                { val: 'vata', text: "Anxious, fearful, creative" },
+                { val: 'pitta', text: "Aggressive, intellectual" },
+                { val: 'kapha', text: "Calm, affectionate, slow" }
+            ]},
+            { id: 15, text: "Memory", options: [
+                { val: 'vata', text: "Learns fast, forgets fast" },
+                { val: 'pitta', text: "Sharp, distinct memory" },
+                { val: 'kapha', text: "Slow to learn, never forgets" }
+            ]},
+            { id: 16, text: "Reaction to Stress", options: [
+                { val: 'vata', text: "Anxiety and worry" },
+                { val: 'pitta', text: "Anger and frustration" },
+                { val: 'kapha', text: "Withdrawal and depression" }
+            ]},
+            { id: 17, text: "Speech Pattern", options: [
+                { val: 'vata', text: "Fast, rambling, talkative" },
+                { val: 'pitta', text: "Sharp, clear, argumentative" },
+                { val: 'kapha', text: "Slow, melodious, monotonous" }
+            ]},
+            { id: 18, text: "Financial Habits", options: [
+                { val: 'vata', text: "Spends impulsively" },
+                { val: 'pitta', text: "Spends on luxury/status" },
+                { val: 'kapha', text: "Saves, accumulates wealth" }
+            ]},
+            { id: 19, text: "Weather Preference", options: [
+                { val: 'vata', text: "Dislikes cold & wind" },
+                { val: 'pitta', text: "Dislikes heat & sun" },
+                { val: 'kapha', text: "Dislikes damp & cool" }
+            ]},
+            { id: 20, text: "Dreams", options: [
+                { val: 'vata', text: "Flying, running, fear" },
+                { val: 'pitta', text: "Fire, violence, bright light" },
+                { val: 'kapha', text: "Water, nature, romance" }
+            ]}
+        ];
+
+        // 1. Render Questions on Load
+        const container = document.getElementById('questions-container');
+       
+        questions.forEach((q, index) => {
+            const html = `
+                <div class="bg-white p-6 md:p-8 rounded-2xl shadow-sm border border-gray-100 transition-all hover:shadow-md question-card" id="card-${index}">
+                    <div class="flex items-center mb-6">
+                        <span class="bg-green-100 text-green-700 font-bold w-8 h-8 flex items-center justify-center rounded-full mr-3 text-sm">${index + 1}</span>
+                        <h3 class="text-lg md:text-xl font-semibold text-gray-800">${q.text}</h3>
+                    </div>
+                   
+                    <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+                        ${q.options.map(opt => `
+                            <label class="relative cursor-pointer group">
+                                <input type="radio" name="q${q.id}" value="${opt.val}" class="peer sr-only" onchange="updateProgress()">
+                                <div class="p-4 rounded-xl border-2 border-gray-200 hover:border-green-400 transition-all h-full flex flex-col items-center justify-center text-center bg-gray-50 peer-checked:bg-green-50 peer-checked:border-green-500 peer-checked:text-green-700">
+                                   
+                                    <span class="text-sm font-medium text-gray-700 group-hover:text-gray-900 peer-checked:font-bold">${opt.text}</span>
+                                   
+                                    <div class="check-icon absolute top-3 right-3 text-green-600 opacity-0 transform scale-0 transition-all duration-300">
+                                        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
+                                    </div>
+                                </div>
+                            </label>
+                        `).join('')}
+                    </div>
+                </div>
+            `;
+            container.innerHTML += html;
+        });
+
+        // 2. Progress Bar Logic
+        function updateProgress() {
+            const total = questions.length;
+            const answered = document.querySelectorAll('input[type="radio"]:checked').length;
+            const pct = (answered / total) * 100;
+            document.getElementById('progress-bar').style.width = `${pct}%`;
+        }
+
+        // Global variable to store result for saving
+        let currentResult = "";
+
+        // 3. Calculation Logic
+        function calculatePrakriti() {
+            const formData = new FormData(document.getElementById('prakriti-quiz'));
+            let scores = { vata: 0, pitta: 0, kapha: 0 };
+            let answered = 0;
+
+            for (let pair of formData.entries()) {
+                if (scores[pair[1]] !== undefined) {
+                    scores[pair[1]]++;
+                    answered++;
+                }
+            }
+
+            if (answered < questions.length) {
+                alert(`Please answer all questions to get an accurate result. You have answered ${answered} out of ${questions.length}.`);
+                return;
+            }
+
+            // Determine Result
+            let maxScore = Math.max(scores.vata, scores.pitta, scores.kapha);
+            let resultText = "";
+            let types = [];
+           
+            if (scores.vata === maxScore) types.push("Vata");
+            if (scores.pitta === maxScore) types.push("Pitta");
+            if (scores.kapha === maxScore) types.push("Kapha");
+
+            if (types.length === 1) resultText = types[0];
+            else if (types.length === 2) resultText = types.join(" - ") + " (Dual)";
+            else resultText = "Tridoshic (Balanced)";
+
+            // Update Global Variable
+            currentResult = resultText;
+
+            // Populate Modal
+            document.getElementById('result-title').innerText = resultText;
+           
+            // Generate Bar Charts
+            const vataPct = (scores.vata / questions.length) * 100;
+            const pittaPct = (scores.pitta / questions.length) * 100;
+            const kaphaPct = (scores.kapha / questions.length) * 100;
+
+            document.getElementById('breakdown-container').innerHTML = `
+                <div class="mb-2 flex justify-between"><span>Air (Vata)</span> <span class="font-bold">${Math.round(vataPct)}%</span></div>
+                <div class="w-full bg-gray-200 rounded-full h-2.5 mb-4"><div class="bg-blue-400 h-2.5 rounded-full" style="width: ${vataPct}%"></div></div>
+
+                <div class="mb-2 flex justify-between"><span>Fire (Pitta)</span> <span class="font-bold">${Math.round(pittaPct)}%</span></div>
+                <div class="w-full bg-gray-200 rounded-full h-2.5 mb-4"><div class="bg-orange-500 h-2.5 rounded-full" style="width: ${pittaPct}%"></div></div>
+
+                <div class="mb-2 flex justify-between"><span>Earth (Kapha)</span> <span class="font-bold">${Math.round(kaphaPct)}%</span></div>
+                <div class="w-full bg-gray-200 rounded-full h-2.5"><div class="bg-green-600 h-2.5 rounded-full" style="width: ${kaphaPct}%"></div></div>
+            `;
+
+            showModal();
+            triggerConfetti();
+        }
+
+        // 4. Save to Dashboard Function
+        function saveAndGoDashboard() {
+            if (!currentResult) return;
+
+            // Send data to the Django View
+            fetch('/save-prakriti/', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ result: currentResult })
+            })
+            .then(response => {
+                if (response.ok) {
+                    window.location.href = "{% url 'dashboard' %}";
+                } else {
+                    console.error("Failed to save.");
+                    window.location.href = "{% url 'dashboard' %}"; // Redirect anyway
+                }
+            })
+            .catch(err => {
+                console.error("Error:", err);
+                window.location.href = "{% url 'dashboard' %}";
+            });
+        }
+
+        // 5. Modal Functions
+        function showModal() {
+            const modal = document.getElementById('result-modal');
+            const content = document.getElementById('modal-content');
+            modal.classList.remove('hidden');
+            setTimeout(() => {
+                modal.classList.remove('opacity-0');
+                content.classList.remove('scale-95');
+                content.classList.add('scale-100');
+            }, 10);
+        }
+
+        function closeModal() {
+            const modal = document.getElementById('result-modal');
+            const content = document.getElementById('modal-content');
+            modal.classList.add('opacity-0');
+            content.classList.remove('scale-100');
+            content.classList.add('scale-95');
+            setTimeout(() => {
+                modal.classList.add('hidden');
+            }, 300);
+        }
+
+        function triggerConfetti() {
+            var duration = 3 * 1000;
+            var animationEnd = Date.now() + duration;
+            var defaults = { startVelocity: 30, spread: 360, ticks: 60, zIndex: 60 };
+
+            function randomInRange(min, max) { return Math.random() * (max - min) + min; }
+
+            var interval = setInterval(function() {
+                var timeLeft = animationEnd - Date.now();
+                if (timeLeft <= 0) return clearInterval(interval);
+                var particleCount = 50 * (timeLeft / duration);
+                confetti(Object.assign({}, defaults, { particleCount, origin: { x: randomInRange(0.1, 0.3), y: Math.random() - 0.2 } }));
+                confetti(Object.assign({}, defaults, { particleCount, origin: { x: randomInRange(0.7, 0.9), y: Math.random() - 0.2 } }));
+            }, 250);
+        }
+    </script>
+</body>
+</html>

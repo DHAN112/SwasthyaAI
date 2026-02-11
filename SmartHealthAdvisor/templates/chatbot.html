@@ -1,0 +1,369 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AyurBot | AI Ayurvedic Expert</title>
+
+<script src="https://cdn.tailwindcss.com"></script>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+<style>
+    body { font-family: 'Poppins', sans-serif; }
+    
+    /* 🌟 Intriguing Animated Background */
+    .animated-bg {
+        background: linear-gradient(-45deg, #ee7752, #e73c7e, #23a6d5, #23d5ab, #dcfce7, #f0fdf4);
+        background-size: 400% 400%;
+        animation: gradientBG 15s ease infinite;
+        position: absolute;
+        top: 0; left: 0; width: 100%; height: 100%;
+        z-index: -1;
+    }
+
+    @keyframes gradientBG {
+        0% { background-position: 0% 50%; }
+        50% { background-position: 100% 50%; }
+        100% { background-position: 0% 50%; }
+    }
+
+    /* Glassmorphism Overlay */
+    .glass-overlay {
+        background: rgba(255, 255, 255, 0.4);
+        backdrop-filter: blur(10px);
+        position: absolute; inset: 0;
+    }
+
+    /* Custom Scrollbar */
+    #chat-messages::-webkit-scrollbar { width: 6px; }
+    #chat-messages::-webkit-scrollbar-track { background: transparent; }
+    #chat-messages::-webkit-scrollbar-thumb { background: rgba(34, 197, 94, 0.5); border-radius: 10px; }
+    #chat-messages::-webkit-scrollbar-thumb:hover { background: rgba(34, 197, 94, 0.8); }
+
+    /* Typing Indicator */
+    .typing-dot {
+        width: 6px; height: 6px; background-color: #16a34a; border-radius: 50%;
+        animation: typing 1.4s infinite ease-in-out both;
+    }
+    .typing-dot:nth-child(1) { animation-delay: -0.32s; }
+    .typing-dot:nth-child(2) { animation-delay: -0.16s; }
+    @keyframes typing { 0%, 80%, 100% { transform: scale(0); } 40% { transform: scale(1); } }
+
+    /* Mic Pulse */
+    .mic-listening { animation: pulse-red 1.5s infinite; background-color: #fee2e2; color: #ef4444; border-color: #ef4444; }
+    @keyframes pulse-red { 0% { box-shadow: 0 0 0 0 rgba(239, 68, 68, 0.7); } 70% { box-shadow: 0 0 0 10px rgba(239, 68, 68, 0); } 100% { box-shadow: 0 0 0 0 rgba(239, 68, 68, 0); } }
+</style>
+</head>
+
+<body class="h-screen flex flex-col overflow-hidden relative">
+
+<div class="animated-bg"></div>
+<div class="glass-overlay"></div>
+
+<nav class="flex justify-between items-center px-6 md:px-10 py-4 bg-white/80 backdrop-blur-xl shadow-sm z-50 transition-all duration-300">
+    <div class="flex items-center space-x-2 animate__animated animate__fadeInLeft">
+      <div class="bg-gradient-to-tr from-green-600 to-emerald-400 p-2 rounded-lg shadow-lg text-white">
+        <i class="fa-solid fa-leaf"></i>
+      </div>
+      <h1 class="text-2xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-green-800 to-emerald-600">AyurBot</h1>
+    </div>
+  
+    <ul class="hidden md:flex space-x-8 font-medium text-gray-700 text-sm animate__animated animate__fadeInDown">
+      <li><a href="{% url 'home' %}" class="hover:text-green-600 transition-colors">Home</a></li>
+      <li><a href="{% url 'dashboard' %}" class="hover:text-green-600 transition-colors">Dashboard</a></li>
+      <li><a href="{% url 'chatbot' %}" class="text-green-700 font-bold border-b-2 border-green-600 pb-1">AyurBot</a></li>
+    </ul>
+
+    <div class="relative animate__animated animate__fadeInRight">
+        <select id="language-select" class="bg-white/90 border border-green-200 text-gray-700 text-sm rounded-full focus:ring-green-500 focus:border-green-500 block w-full p-2.5 pl-4 pr-8 shadow-sm cursor-pointer hover:bg-green-50 transition-colors outline-none appearance-none font-medium">
+            <option value="English">🇬🇧 English</option>
+            <option value="Hindi">🇮🇳 Hindi (हिंदी)</option>
+            <option value="Marathi">🚩 Marathi (मराठी)</option>
+            <option value="Sanskrit">🕉️ Sanskrit (संस्कृत)</option>
+        </select>
+        <div class="absolute inset-y-0 right-3 flex items-center pointer-events-none text-green-600">
+            <i class="fa-solid fa-chevron-down text-xs"></i>
+        </div>
+    </div>
+</nav>
+
+<div class="flex-grow flex flex-col items-center justify-center p-4 relative z-10">
+    
+    <div id="chat-container" class="bg-white/70 backdrop-blur-2xl border border-white/60 w-full max-w-4xl h-[80vh] rounded-3xl shadow-2xl flex flex-col overflow-hidden animate__animated animate__zoomIn">
+        
+        <div class="bg-white/60 px-6 py-4 border-b border-green-100 flex justify-between items-center">
+            <div class="flex items-center space-x-3">
+                <div class="relative">
+                    <div class="w-12 h-12 bg-gradient-to-tr from-green-500 to-teal-400 rounded-full flex items-center justify-center text-white text-xl shadow-lg border-2 border-white">
+                        <i class="fa-solid fa-robot"></i>
+                    </div>
+                    <span class="absolute bottom-0 right-0 w-3 h-3 bg-green-500 border-2 border-white rounded-full animate-pulse"></span>
+                </div>
+                <div>
+                    <h2 class="font-bold text-gray-800 text-base">AyurBot Expert</h2>
+                    <p class="text-xs text-green-700 font-medium opacity-80">Online & Ready to Help</p>
+                </div>
+            </div>
+            <button onclick="clearChat()" class="text-xs text-gray-500 hover:text-red-500 transition-colors border border-gray-300 hover:border-red-400 px-3 py-1.5 rounded-full bg-white">
+                <i class="fa-solid fa-trash-can mr-1"></i> Clear
+            </button>
+        </div>
+
+        <div id="chat-messages" class="flex-grow p-6 overflow-y-auto space-y-6 scroll-smooth">
+            </div>
+
+        <div class="px-6 py-3 bg-white/40 border-t border-gray-100 flex space-x-3 overflow-x-auto no-scrollbar">
+            <button onclick="fillInput('Natural cure for cold')" class="flex items-center space-x-2 whitespace-nowrap px-4 py-2 bg-white text-green-700 text-xs font-semibold rounded-full hover:bg-green-600 hover:text-white transition-all border border-green-100 shadow-sm hover:shadow-md transform hover:-translate-y-0.5">
+                <span>🤧</span> <span>Cure Cold</span>
+            </button>
+            <button onclick="fillInput('Diet plan for Pitta Dosha')" class="flex items-center space-x-2 whitespace-nowrap px-4 py-2 bg-white text-orange-600 text-xs font-semibold rounded-full hover:bg-orange-500 hover:text-white transition-all border border-orange-100 shadow-sm hover:shadow-md transform hover:-translate-y-0.5">
+                <span>🔥</span> <span>Pitta Diet</span>
+            </button>
+            <button onclick="fillInput('Yoga for back pain')" class="flex items-center space-x-2 whitespace-nowrap px-4 py-2 bg-white text-blue-600 text-xs font-semibold rounded-full hover:bg-blue-500 hover:text-white transition-all border border-blue-100 shadow-sm hover:shadow-md transform hover:-translate-y-0.5">
+                <span>🧘</span> <span>Back Pain Yoga</span>
+            </button>
+            <button onclick="fillInput('Benefits of Ashwagandha')" class="flex items-center space-x-2 whitespace-nowrap px-4 py-2 bg-white text-purple-600 text-xs font-semibold rounded-full hover:bg-purple-500 hover:text-white transition-all border border-purple-100 shadow-sm hover:shadow-md transform hover:-translate-y-0.5">
+                <span>🌿</span> <span>Ashwagandha</span>
+            </button>
+        </div>
+
+        <div id="chat-input-area" class="p-4 bg-white/80 backdrop-blur-md border-t border-gray-100">
+            <div class="flex items-center gap-2 bg-gray-50 rounded-2xl px-3 py-2 border border-gray-200 focus-within:border-green-400 focus-within:ring-2 focus-within:ring-green-100 transition-all shadow-inner">
+                
+                <button id="voice-btn" onclick="startVoiceInput()" class="p-3 text-gray-400 hover:text-green-600 transition-colors rounded-full hover:bg-gray-100" title="Speak">
+                    <i class="fa-solid fa-microphone"></i>
+                </button>
+
+                <input type="text" id="user-input" placeholder="Ask about remedies, diet, or yoga..." 
+                    class="flex-grow bg-transparent outline-none text-gray-700 placeholder-gray-400 px-2 py-2 text-sm"
+                    autocomplete="off" onkeypress="handleKeyPress(event)">
+                
+                <button onclick="sendMessage()" 
+                    class="ml-2 bg-gradient-to-r from-green-600 to-teal-500 text-white rounded-xl p-3 px-5 shadow-lg hover:shadow-green-300/50 hover:scale-105 transition-all duration-300">
+                    <i class="fa-solid fa-paper-plane"></i>
+                </button>
+            </div>
+            <p class="text-[10px] text-center text-gray-400 mt-2 font-medium">
+                <i class="fa-solid fa-shield-heart mr-1"></i> AyurBot can make mistakes. Consult a doctor for serious issues.
+            </p>
+        </div>
+    </div>
+</div>
+
+<script>
+    const chatMessages = document.getElementById('chat-messages');
+    const languageSelect = document.getElementById('language-select');
+    
+    // 1. Language Greeting Database
+    const greetings = {
+        'English': "Namaste! 🙏 I am AyurBot. <br>I can guide you with <b>Ayurvedic Remedies</b>, <b>Diet Plans</b>, and <b>Yoga</b>.",
+        'Hindi': "नमस्ते! 🙏 मैं आयुर्बोट हूँ। <br>मैं आपको <b>आयुर्वेदिक उपचार</b>, <b>आहार योजना</b> और <b>योग</b> के बारे में मार्गदर्शन कर सकता हूँ।",
+        'Marathi': "नमस्ते! 🙏 मी आयुर्बोट आहे. <br>मी तुम्हाला <b>आयुर्वेदिक उपाय</b>, <b>आहार योजना</b> आणि <b>योगासने</b> याबाबत मार्गदर्शन करू शकतो.",
+        'Sanskrit': "नमस्ते! 🙏 अहम् आयुर्बोटः अस्मि। <br>अहम् भवन्तं <b>आयुर्वेदिक-उपचारैः</b>, <b>आहार-योजनाभिः</b>, <b>योगेन</b> च मार्गदर्शनं कर्तुं शक्नोमि।"
+    };
+
+    // 2. Initialize Greeting
+    window.onload = function() {
+        triggerGreeting('English'); // Default
+    };
+
+    // 3. Language Change Listener
+    languageSelect.addEventListener('change', function() {
+        const selectedLang = this.value;
+        clearChat(false); // Clear without sending default message
+        
+        // Show loading then new greeting
+        const loadingId = showLoading();
+        setTimeout(() => {
+            removeLoading(loadingId);
+            const greetingText = greetings[selectedLang] || greetings['English'];
+            typeWriterResponse(greetingText, "bot");
+        }, 600);
+    });
+
+    function triggerGreeting(lang) {
+        setTimeout(() => {
+            appendMessage("bot", greetings[lang]);
+        }, 500);
+    }
+
+    // 4. Quick Chip Logic
+    function fillInput(text) {
+        document.getElementById('user-input').value = text;
+        sendMessage();
+    }
+
+    function handleKeyPress(event) {
+        if (event.key === "Enter") sendMessage();
+    }
+
+    // 5. Clear Chat
+    function clearChat(showMessage = true) {
+        chatMessages.innerHTML = '';
+        if(showMessage) {
+            typeWriterResponse("Chat history cleared. Start a new session!", "bot");
+        }
+    }
+
+    // 6. Send Message Logic
+    function sendMessage() {
+        const inputField = document.getElementById('user-input');
+        let message = inputField.value.trim();
+        const selectedLang = languageSelect.value;
+        
+        if (message === "") return;
+
+        // User Message
+        appendMessage("user", message);
+        inputField.value = "";
+
+        // Show "Thinking..."
+        const loadingId = showLoading();
+
+        // Inject Language Context for Backend
+        if(selectedLang !== 'English') {
+            message = `(Answer in ${selectedLang}): ${message}`;
+        }
+
+        // AJAX Call
+        fetch('/chat-api/', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+                'X-CSRFToken': getCookie('csrftoken')
+            },
+            body: JSON.stringify({ 'message': message })
+        })
+        .then(response => response.json())
+        .then(data => {
+            removeLoading(loadingId);
+            typeWriterResponse(data.response, "bot");
+        })
+        .catch(error => {
+            removeLoading(loadingId);
+            appendMessage("bot", "⚠️ Connection error. Please check your internet.");
+            console.error('Error:', error);
+        });
+    }
+
+    // 7. Append Message (Standard)
+    function appendMessage(sender, text) {
+        const div = document.createElement('div');
+        div.className = `flex ${sender === 'user' ? 'justify-end' : 'justify-start'} animate__animated animate__fadeInUp`;
+        
+        const avatar = sender === 'bot' 
+            ? `<div class="w-9 h-9 bg-gradient-to-tr from-green-500 to-teal-400 rounded-full flex-shrink-0 flex items-center justify-center text-white text-sm mr-3 shadow-md border-2 border-white"><i class="fa-solid fa-robot"></i></div>`
+            : ``; 
+
+        const bubbleStyle = sender === 'user' 
+            ? 'bg-gradient-to-br from-green-600 to-emerald-600 text-white rounded-2xl rounded-tr-none shadow-green-200 shadow-lg' 
+            : 'bg-white text-gray-700 border border-green-50 rounded-2xl rounded-tl-none shadow-md';
+
+        div.innerHTML = `
+            ${sender === 'bot' ? avatar : ''}
+            <div class="max-w-[80%] px-5 py-3.5 text-sm leading-relaxed ${bubbleStyle}">
+                ${text}
+            </div>
+        `;
+
+        chatMessages.appendChild(div);
+        scrollToBottom();
+    }
+
+    // 8. Typewriter Effect
+    function typeWriterResponse(text, sender) {
+        const div = document.createElement('div');
+        div.className = `flex justify-start animate__animated animate__fadeInUp`;
+        
+        const avatar = `<div class="w-9 h-9 bg-gradient-to-tr from-green-500 to-teal-400 rounded-full flex-shrink-0 flex items-center justify-center text-white text-sm mr-3 shadow-md border-2 border-white"><i class="fa-solid fa-robot"></i></div>`;
+
+        div.innerHTML = `
+            ${avatar}
+            <div class="max-w-[80%] px-5 py-3.5 text-sm leading-relaxed bg-white text-gray-700 border border-green-50 rounded-2xl rounded-tl-none shadow-md">
+                <span id="typing-${Date.now()}">${text}</span>
+            </div>
+        `;
+        chatMessages.appendChild(div);
+        scrollToBottom();
+    }
+
+    // 9. Voice Input
+    function startVoiceInput() {
+        if (!('webkitSpeechRecognition' in window)) {
+            alert("Please use Google Chrome for voice features.");
+            return;
+        }
+
+        const recognition = new webkitSpeechRecognition();
+        const langMap = { 'English': 'en-US', 'Hindi': 'hi-IN', 'Marathi': 'mr-IN', 'Sanskrit': 'hi-IN' };
+        recognition.lang = langMap[languageSelect.value] || 'en-US';
+        
+        const btn = document.getElementById('voice-btn');
+        
+        recognition.onstart = function() {
+            btn.classList.add('mic-listening');
+            document.getElementById('user-input').placeholder = "Listening...";
+        };
+
+        recognition.onend = function() {
+            btn.classList.remove('mic-listening');
+            document.getElementById('user-input').placeholder = "Ask about remedies, diet, or yoga...";
+        };
+
+        recognition.onresult = function(event) {
+            const transcript = event.results[0][0].transcript;
+            document.getElementById('user-input').value = transcript;
+            sendMessage();
+        };
+
+        recognition.start();
+    }
+
+    // 10. Utils
+    function showLoading() {
+        const id = 'loading-' + Date.now();
+        const div = document.createElement('div');
+        div.id = id;
+        div.className = "flex justify-start animate__animated animate__fadeIn";
+        div.innerHTML = `
+            <div class="w-9 h-9 bg-gradient-to-tr from-green-500 to-teal-400 rounded-full flex-shrink-0 flex items-center justify-center text-white text-sm mr-3 shadow-md border-2 border-white"><i class="fa-solid fa-robot"></i></div>
+            <div class="bg-white border border-gray-100 px-4 py-4 rounded-2xl rounded-tl-none shadow-sm flex space-x-1 items-center h-10">
+                <div class="typing-dot"></div>
+                <div class="typing-dot"></div>
+                <div class="typing-dot"></div>
+            </div>`;
+        chatMessages.appendChild(div);
+        scrollToBottom();
+        return id;
+    }
+
+    function removeLoading(id) {
+        const element = document.getElementById(id);
+        if (element) element.remove();
+    }
+
+    function scrollToBottom() {
+        chatMessages.scrollTop = chatMessages.scrollHeight;
+    }
+
+    function getCookie(name) {
+        let cookieValue = null;
+        if (document.cookie && document.cookie !== '') {
+            const cookies = document.cookie.split(';');
+            for (let i = 0; i < cookies.length; i++) {
+                const cookie = cookies[i].trim();
+                if (cookie.substring(0, name.length + 1) === (name + '=')) {
+                    cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
+                    break;
+                }
+            }
+        }
+        return cookieValue;
+    }
+</script>
+
+</body>
+</html>

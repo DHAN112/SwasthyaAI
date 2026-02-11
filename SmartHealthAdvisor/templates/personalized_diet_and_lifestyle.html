@@ -1,0 +1,243 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Diet & Lifestyle | SwasthyaAI</title>
+
+<script src="https://cdn.tailwindcss.com"></script>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+<style>
+    body { font-family: 'Poppins', sans-serif; }
+    
+    /* Navbar Link Animation */
+    .nav-link { position: relative; }
+    .nav-link::after {
+        content: ''; position: absolute; width: 0; height: 2px; bottom: -2px; left: 0;
+        background-color: #16a34a; transition: width 0.3s ease;
+    }
+    .nav-link:hover::after { width: 100%; }
+
+    /* Custom Scrollbar */
+    ::-webkit-scrollbar { width: 8px; }
+    ::-webkit-scrollbar-track { background: #f1f1f1; }
+    ::-webkit-scrollbar-thumb { background: #888; border-radius: 4px; }
+    ::-webkit-scrollbar-thumb:hover { background: #555; }
+</style>
+</head>
+
+<body class="bg-gradient-to-br from-[#f0fdf4] to-[#e6f0eb] text-gray-800 min-h-screen">
+
+<nav class="flex justify-between items-center px-6 md:px-10 py-4 bg-white/80 backdrop-blur-md shadow-sm sticky top-0 z-50 transition-all duration-300">
+    <div class="flex items-center space-x-2 animate__animated animate__fadeInLeft">
+      <div class="bg-green-100 p-2 rounded-full shadow-sm">🌿</div>
+      <h1 class="text-xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-green-700 to-emerald-600">SwasthyaAI</h1>
+    </div>
+  
+    <ul class="hidden md:flex space-x-8 font-medium text-gray-600 text-sm animate__animated animate__fadeInDown animate__delay-1s">
+      <li><a href="{% url 'home' %}" class="nav-link hover:text-green-600 transition-colors">Home</a></li>
+      <li><a href="{% url 'dashboard' %}" class="nav-link hover:text-green-600 transition-colors">Dashboard</a></li>
+      <li><a href="{% url 'chatbot' %}" class="nav-link hover:text-green-600 transition-colors">AI Chatbot</a></li>
+      <li><a href="{% url 'prakriti_assessment' %}" class="nav-link hover:text-green-600 transition-colors">Prakriti Quiz</a></li>
+      <li><a href="{% url 'personalized_diet_and_lifestyle' %}" class="text-green-700 font-bold border-b-2 border-green-600">Diet & Lifestyle</a></li>
+    </ul>
+
+    <div class="h-10 w-10 bg-gradient-to-tr from-green-200 to-emerald-200 rounded-full flex items-center justify-center text-green-800 font-bold shadow-md animate__animated animate__fadeInRight">
+        {% if request.session.user %}{{ request.session.user|slice:":1" }}{% else %}?{% endif %}
+    </div>
+</nav>
+
+<div class="container mx-auto px-6 py-12 max-w-6xl">
+
+    <div class="text-center mb-12 animate__animated animate__fadeInUp">
+        <span class="bg-green-100 text-green-800 text-xs font-bold px-4 py-1.5 rounded-full uppercase tracking-widest mb-4 inline-block shadow-sm">
+            Holistic Nutrition
+        </span>
+        <h2 class="text-4xl md:text-5xl font-extrabold text-gray-900 mb-4">
+            Eat for Your <span class="text-transparent bg-clip-text bg-gradient-to-r from-green-600 to-emerald-600">Dosha</span>
+        </h2>
+        <p class="text-gray-600 text-lg max-w-2xl mx-auto">
+            Ayurveda believes that "food is medicine." Select your body type below to unlock a diet plan tailored to your unique constitution.
+        </p>
+    </div>
+
+    <div id="recommendation-form" class="bg-white/70 backdrop-blur-xl p-10 rounded-3xl shadow-2xl border border-white/50 max-w-2xl mx-auto animate__animated animate__fadeInUp animate__delay-1s relative overflow-hidden">
+        
+        <div class="absolute -top-10 -right-10 w-40 h-40 bg-green-200 rounded-full mix-blend-multiply filter blur-3xl opacity-30"></div>
+
+        <form id="dosha-form" class="relative z-10">
+            <label class="block text-gray-700 font-bold mb-4 text-lg">Select Your Dosha Type:</label>
+            <div class="relative">
+                <select id="dosha-select" class="w-full p-4 bg-white border-2 border-green-100 rounded-2xl text-gray-700 focus:ring-4 focus:ring-green-500/20 focus:border-green-500 outline-none appearance-none font-semibold text-lg cursor-pointer transition-all shadow-sm hover:border-green-300">
+                    <option value="">-- Choose Dosha --</option>
+                    <option value="Vata">💨 Vata (Air & Space)</option>
+                    <option value="Pitta">🔥 Pitta (Fire & Water)</option>
+                    <option value="Kapha">💧 Kapha (Earth & Water)</option>
+                    <option value="Vata-Pitta">💨🔥 Vata-Pitta</option>
+                    <option value="Pitta-Kapha">🔥💧 Pitta-Kapha</option>
+                    <option value="Vata-Kapha">💨💧 Vata-Kapha</option>
+                    <option value="Tridoshic">⚖️ Tridoshic (Balanced)</option>
+                </select>
+                <div class="absolute inset-y-0 right-5 flex items-center pointer-events-none text-green-600">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
+                </div>
+            </div>
+
+            <button type="submit" class="mt-8 w-full bg-gradient-to-r from-green-600 to-emerald-600 text-white font-bold py-4 rounded-2xl shadow-lg hover:shadow-green-500/40 hover:-translate-y-1 transition-all duration-300 text-lg flex items-center justify-center group">
+                Generate Plan 
+                <span class="ml-2 group-hover:translate-x-1 transition-transform">→</span>
+            </button>
+        </form>
+    </div>
+
+    <section id="result-section" class="hidden mt-12 opacity-0 transition-all duration-700">
+        
+        <div class="bg-white/80 backdrop-blur-xl p-8 rounded-3xl shadow-xl border border-white/50 mb-10">
+            <div class="flex items-center mb-8">
+                <div class="bg-green-100 p-3 rounded-full mr-4 text-2xl">🥗</div>
+                <h3 class="text-2xl font-bold text-gray-800">Recommended Diet Plan</h3>
+            </div>
+            <div id="diet-result" class="space-y-8"></div>
+        </div>
+
+        <div class="bg-emerald-50/80 backdrop-blur-xl p-8 rounded-3xl shadow-xl border border-emerald-100 mb-12">
+            <div class="flex items-center mb-8">
+                <div class="bg-emerald-200 p-3 rounded-full mr-4 text-2xl">🧘</div>
+                <h3 class="text-2xl font-bold text-gray-800">Lifestyle & Routine (Dinacharya)</h3>
+            </div>
+            <ul id="lifestyle-result" class="grid md:grid-cols-2 gap-4"></ul>
+        </div>
+
+        <div class="text-center">
+            <button onclick="retakeForm()" class="bg-white text-gray-600 border border-gray-300 font-bold py-3 px-8 rounded-full hover:bg-gray-50 hover:text-green-700 transition-colors shadow-sm inline-flex items-center">
+                <span>↺ Check Another Dosha</span>
+            </button>
+        </div>
+
+    </section>
+
+</div>
+
+<script>
+    // 🥗 COMPLETE DATASETS
+    const dietData = [
+        {"Dosha Type":"Vata","Category":"Breakfast","Recommendation":"Warm oatmeal or porridge with cinnamon, ginger, and ghee."},
+        {"Dosha Type":"Vata","Category":"Lunch","Recommendation":"Kitchari (rice & mung beans) with cooked vegetables."},
+        {"Dosha Type":"Vata","Category":"Dinner","Recommendation":"Warm soup or stew; avoid raw salads."},
+        {"Dosha Type":"Pitta","Category":"Breakfast","Recommendation":"Fruit salad with sweet fruits like apple, pear, or melon."},
+        {"Dosha Type":"Pitta","Category":"Lunch","Recommendation":"Cooling salads, basmati rice, and bitter greens."},
+        {"Dosha Type":"Pitta","Category":"Dinner","Recommendation":"Steamed veggies with mild spices like coriander."},
+        {"Dosha Type":"Kapha","Category":"Breakfast","Recommendation":"Stewed apples with cloves or just herbal tea (light breakfast)."},
+        {"Dosha Type":"Kapha","Category":"Lunch","Recommendation":"Spicy lentil soup with millet or quinoa."},
+        {"Dosha Type":"Kapha","Category":"Dinner","Recommendation":"Roasted vegetables with black pepper and turmeric."},
+        {"Dosha Type":"Tridoshic","Category":"General","Recommendation":"Balanced meals combining all six tastes."}
+    ];
+
+    const lifestyleData = [
+        {"Dosha Type":"Vata","Tip":"Stick to a strict daily routine (sleep/wake times)."},
+        {"Dosha Type":"Vata","Tip":"Daily self-massage (Abhyanga) with warm sesame oil."},
+        {"Dosha Type":"Pitta","Tip":"Avoid overheating; exercise during cooler parts of the day."},
+        {"Dosha Type":"Pitta","Tip":"Practice cooling breathwork (Sheetali Pranayama)."},
+        {"Dosha Type":"Kapha","Tip":"Wake up early (before 6 AM) to avoid lethargy."},
+        {"Dosha Type":"Kapha","Tip":"Engage in vigorous exercise to stimulate metabolism."}
+    ];
+
+    // DOM Elements
+    const form = document.getElementById('dosha-form');
+    const mainFormBox = document.getElementById('recommendation-form');
+    const resultSection = document.getElementById('result-section');
+    const dietResult = document.getElementById('diet-result');
+    const lifestyleResult = document.getElementById('lifestyle-result');
+
+    form.addEventListener('submit', function(event) {
+        event.preventDefault();
+        const selectedDosha = document.getElementById('dosha-select').value;
+
+        if (!selectedDosha) {
+            alert("Please select a Dosha first.");
+            return;
+        }
+
+        // --- FILTER LOGIC ---
+        let filteredDiet = [];
+        let filteredLifestyle = [];
+
+        // Simple filtering (supports dual doshas by checking substring)
+        dietData.forEach(item => {
+            if (selectedDosha.includes(item["Dosha Type"]) || item["Dosha Type"] === "Tridoshic") {
+                filteredDiet.push(item);
+            }
+        });
+
+        lifestyleData.forEach(item => {
+            if (selectedDosha.includes(item["Dosha Type"])) {
+                filteredLifestyle.push(item);
+            }
+        });
+
+        // --- RENDER DIET ---
+        if (filteredDiet.length === 0) {
+            dietResult.innerHTML = `<p class="text-gray-500">No specific data found. Try Vata, Pitta, or Kapha.</p>`;
+        } else {
+            // Group by Category
+            const grouped = {};
+            filteredDiet.forEach(item => {
+                if (!grouped[item.Category]) grouped[item.Category] = [];
+                grouped[item.Category].push(item.Recommendation);
+            });
+
+            let html = `<div class="grid md:grid-cols-3 gap-6">`;
+            for (const [category, recs] of Object.entries(grouped)) {
+                html += `
+                <div class="bg-green-50/50 p-6 rounded-2xl border border-green-100 hover:shadow-lg transition-all duration-300">
+                    <h4 class="text-lg font-bold text-green-700 mb-3 flex items-center capitalize">
+                        ${category}
+                    </h4>
+                    <ul class="space-y-3">
+                        ${recs.map(r => `<li class="flex items-start text-gray-700 text-sm"><span class="text-green-500 mr-2">✔</span> ${r}</li>`).join("")}
+                    </ul>
+                </div>`;
+            }
+            html += `</div>`;
+            dietResult.innerHTML = html;
+        }
+
+        // --- RENDER LIFESTYLE ---
+        if (filteredLifestyle.length === 0) {
+            lifestyleResult.innerHTML = `<li class="text-gray-500">General Tip: Maintain a balanced routine.</li>`;
+        } else {
+            lifestyleResult.innerHTML = filteredLifestyle.map(item => `
+                <li class="flex items-center bg-white p-4 rounded-xl shadow-sm border border-emerald-100">
+                    <span class="bg-emerald-100 text-emerald-600 p-2 rounded-full mr-3 text-sm">💡</span>
+                    <span class="text-gray-700 font-medium text-sm">${item.Tip}</span>
+                </li>
+            `).join("");
+        }
+
+        // --- ANIMATION ---
+        mainFormBox.classList.add('hidden');
+        resultSection.classList.remove('hidden');
+        
+        // Small delay to allow 'hidden' class removal to take effect before opacity transition
+        setTimeout(() => {
+            resultSection.classList.remove('opacity-0');
+            resultSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }, 50);
+    });
+
+    function retakeForm() {
+        resultSection.classList.add('opacity-0');
+        setTimeout(() => {
+            resultSection.classList.add('hidden');
+            mainFormBox.classList.remove('hidden');
+            document.getElementById('dosha-select').value = "";
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }, 500);
+    }
+</script>
+
+</body>
+</html>

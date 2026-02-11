@@ -1,0 +1,530 @@
+[
+    {
+        "question": "Hello",
+        "answer": "Namaste! 🙏 I am AyurBot.Your Guide in The Journey of AyurVeda. I am Specialized Assistant for Attending your queries. I can help you with Remedies, Diet Plans, and Prakriti Analysis. Try asking about Cold, Acidity, or Hair Fall."
+    },
+    {
+        "question": "Who created you?",
+        "answer": "I was created by engineering students as a Final Year Major Project to bring Ayurveda to the digital age."
+    },
+    {
+        "question": "What is Ayurveda?",
+        "answer": "Ayurveda is a natural system of medicine that originated in India more than 3,000 years ago. The term Ayurveda comes from the Sanskrit words 'Ayur' (life) and 'Veda' (science or knowledge)."
+    },
+    {
+        "question": "What is Prakriti?",
+        "answer": "Prakriti is your unique physical and mental constitution, determined at conception. It is a combination of the three Doshas: Vata, Pitta, and Kapha."
+    },
+    {
+        "question": "Common Cold and Cough remedies",
+        "answer": "<b>🥶 Common Cold (Pratishyay)</b><br><b>Symptoms:</b> Runny nose, sore throat, sneezing.<br><b>🌿 Remedies:</b> Drink ginger tea with honey and tulsi. Steam inhalation with eucalyptus oil.<br><b>💊 Medicines:</b> Sitopaladi Churna, Talisadi Churna, Tribhuvan Kirti Ras.<br><i>⚠️ Disclaimer: Consult a doctor if fever persists for more than 3 days.</i>"
+    },
+    {
+        "question": "Acidity and Acid Reflux cure",
+        "answer": "<b>🔥 Acidity (Amla Pitta)</b><br><b>Symptoms:</b> Burning sensation in chest, sour belching.<br><b>🌿 Remedies:</b> Drink coriander water soaked overnight. Chew fennel seeds (saunf) after meals.<br><b>💊 Medicines:</b> Avipattikar Churna, Kamdudha Ras, Sutshekhar Ras.<br><i>⚠️ Disclaimer: Avoid spicy foods. Consult a doctor for chronic issues.</i>"
+    },
+    {
+        "question": "Ayurveda for Anxiety and Stress",
+        "answer": "<b>🧠 Anxiety (Chitta Udvega)</b><br><b>Symptoms:</b> Restlessness, rapid heartbeat, overthinking.<br><b>🌿 Remedies:</b> Massage feet with warm sesame oil before sleep. Practice Shavasana.<br><b>💊 Medicines:</b> Brahmi Vati, Manasamitra Vatakam, Ashwagandha Arishta.<br><i>⚠️ Disclaimer: Seek professional help for serious mental health concerns.</i>"
+    },
+    {
+        "question": "Cure for Constipation",
+        "answer": "<b>💩 Constipation (Vibandha)</b><br><b>Symptoms:</b> Hard stools, irregular bowel movements.<br><b>🌿 Remedies:</b> Eat soaked raisins. Drink warm water with ghee at night.<br><b>💊 Medicines:</b> Triphala Churna, Abhayarishta, Kayam Churna.<br><i>⚠️ Disclaimer: Consult a doctor if pain or bleeding occurs.</i>"
+    },
+    {
+        "question": "Insomnia or Sleeplessness treatment",
+        "answer": "<b>🌙 Insomnia (Anidra)</b><br><b>Symptoms:</b> Difficulty sleeping, waking tired.<br><b>🌿 Remedies:</b> Drink warm nutmeg milk before bed. Apply ghee on temples.<br><b>💊 Medicines:</b> Sarpagandha Ghan Vati, Tagara Capsule.<br><i>⚠️ Disclaimer: Do not drive after taking sleep-inducing herbs.</i>"
+    },
+    {
+        "question": "Acne and Pimples home remedies",
+        "answer": "<b>🧖‍♀️ Acne (Yauvan Pidika)</b><br><b>Symptoms:</b> Red bumps, inflammation.<br><b>🌿 Remedies:</b> Apply neem and turmeric paste. Use aloe vera gel.<br><b>💊 Medicines:</b> Kaishore Guggulu, Khadirarishta, Neem Ghan Vati.<br><i>⚠️ Disclaimer: Avoid squeezing pimples to prevent scarring.</i>"
+    },
+    {
+        "question": "Hair Fall treatment",
+        "answer": "<b>💇‍♀️ Hair Fall (Khalitya)</b><br><b>Symptoms:</b> Excess hair shedding, thinning.<br><b>🌿 Remedies:</b> Massage scalp with Bhringraj or coconut oil. Apply amla paste.<br><b>💊 Medicines:</b> Bhringrajasava, Saptamrit Lauh, Narasimha Rasayana.<br><i>⚠️ Disclaimer: Consult a doctor if hair fall is sudden or patchy.</i>"
+    },
+    {
+        "question": "Joint Pain and Arthritis relief",
+        "answer": "<b>🦴 Joint Pain (Sandhivata)</b><br><b>Symptoms:</b> Stiffness, pain, swelling.<br><b>🌿 Remedies:</b> Massage with Mahanarayan oil. Drink turmeric milk.<br><b>💊 Medicines:</b> Yograj Guggulu, Maha Rasnadi Kwath, Shallaki.<br><i>⚠️ Disclaimer: Gentle movement is good; avoid high impact if painful.</i>"
+    },
+    {
+        "question": "Indigestion and Bloating cure",
+        "answer": "<b>🤢 Indigestion (Ajirna)</b><br><b>Symptoms:</b> Gas, bloating, heaviness.<br><b>🌿 Remedies:</b> Chew fresh ginger with rock salt. Drink buttermilk with cumin.<br><b>💊 Medicines:</b> Hingvastak Churna, Lasunadi Vati, Chitrakadi Vati.<br><i>⚠️ Disclaimer: Consult if pain is severe or accompanied by vomiting.</i>"
+    },
+    {
+        "question": "Headache and Migraine remedies",
+        "answer": "<b>🤯 Headache (Shirashoola)</b><br><b>Symptoms:</b> Throbbing pain, light sensitivity.<br><b>🌿 Remedies:</b> Apply ginger paste on forehead. Put 2 drops of warm ghee in nostrils (Nasya).<br><b>💊 Medicines:</b> Pathyadi Kadha, Shirashooladivajra Ras, Godanti Bhasma.<br><i>⚠️ Disclaimer: Seek help if headache is sudden and severe.</i>"
+    },
+    {
+        "question": "Diabetes management",
+        "answer": "<b>🩸 Diabetes (Madhumeha)</b><br><b>Symptoms:</b> Excessive thirst, frequent urination.<br><b>🌿 Remedies:</b> Drink bitter gourd (karela) juice. Eat fenugreek seeds.<br><b>💊 Medicines:</b> Madhunashini Vati, Chandraprabha Vati, Vasant Kusumakar Ras.<br><i>⚠️ Disclaimer: Monitor blood sugar regularly; do not stop insulin without advice.</i>"
+    },
+    {
+        "question": "High Blood Pressure cure",
+        "answer": "<b>❤️ Hypertension (Rakta Gata Vata)</b><br><b>Symptoms:</b> Dizziness, palpitations.<br><b>🌿 Remedies:</b> Eat garlic and flaxseeds. Practice Chandra Bhedana Pranayama.<br><b>💊 Medicines:</b> Sarpagandha Vati, Mukta Vati, Arjunarishta.<br><i>⚠️ Disclaimer: Never stop BP medication abruptly.</i>"
+    },
+    {
+        "question": "Low Blood Pressure remedies",
+        "answer": "<b>📉 Hypotension</b><br><b>Symptoms:</b> Weakness, fainting.<br><b>🌿 Remedies:</b> Drink beetroot juice. Eat soaked raisins and almonds.<br><b>💊 Medicines:</b> Ashwagandha Churna, Makardhwaj Gutika.<br><i>⚠️ Disclaimer: Stay hydrated and consume adequate salt.</i>"
+    },
+    {
+        "question": "Asthma and Breathing issues",
+        "answer": "<b>🫁 Asthma (Shwasa Roga)</b><br><b>Symptoms:</b> Wheezing, shortness of breath.<br><b>🌿 Remedies:</b> Drink warm ginger-turmeric milk. Steam inhalation with Tulsi.<br><b>💊 Medicines:</b> Shwas Kuthar Ras, Kanakasava, Sitopaladi Churna.<br><i>⚠️ Disclaimer: Keep emergency inhalers accessible.</i>"
+    },
+    {
+        "question": "Fever treatment",
+        "answer": "<b>🤒 Fever (Jwara)</b><br><b>Symptoms:</b> High temperature, body ache.<br><b>🌿 Remedies:</b> Drink basil (tulsi) & ginger decoction. Eat light khichdi.<br><b>💊 Medicines:</b> Mahasudarshan Churna, Tribhuvan Kirti Ras, Amritarishta.<br><i>⚠️ Disclaimer: See a doctor if fever exceeds 103°F or lasts >3 days.</i>"
+    },
+    {
+        "question": "Diarrhea home remedies",
+        "answer": "<b>🚽 Diarrhea (Atisar)</b><br><b>Symptoms:</b> Loose watery stools, dehydration.<br><b>🌿 Remedies:</b> Drink pomegranate juice or buttermilk with nutmeg.<br><b>💊 Medicines:</b> Kutajarishta, Gangadhar Churna, Bilvadi Churna.<br><i>⚠️ Disclaimer: Stay hydrated to prevent electrolyte loss.</i>"
+    },
+    {
+        "question": "Piles Hemorrhoids treatment",
+        "answer": "<b>😣 Piles (Arsha)</b><br><b>Symptoms:</b> Pain, bleeding during bowel movements.<br><b>🌿 Remedies:</b> Apply coconut oil or aloe vera. Eat radishes (Mooli).<br><b>💊 Medicines:</b> Abhayarishta, Arshoghni Vati, Triphala Guggulu.<br><i>⚠️ Disclaimer: Avoid spicy food and straining.</i>"
+    },
+    {
+        "question": "Jaundice remedies",
+        "answer": "<b>⚠️ Jaundice (Kamala)</b><br><b>Symptoms:</b> Yellow skin/eyes, loss of appetite.<br><b>🌿 Remedies:</b> Drink sugarcane juice and radish juice.<br><b>💊 Medicines:</b> Liv-52, Kumaryasava, Arogyavardhini Vati.<br><i>⚠️ Disclaimer: Avoid oil and alcohol completely. Rest is crucial.</i>"
+    },
+    {
+        "question": "Anemia cure",
+        "answer": "<b>🩸 Anemia (Pandu)</b><br><b>Symptoms:</b> Pale skin, fatigue.<br><b>🌿 Remedies:</b> Eat dates, figs, and pomegranate. Cook in iron utensils.<br><b>💊 Medicines:</b> Punarnavadi Mandur, Lohasava, Dhatri Lauh.<br><i>⚠️ Disclaimer: Check hemoglobin levels regularly.</i>"
+    },
+    {
+        "question": "Obesity weight loss",
+        "answer": "<b>⚖️ Obesity (Sthoulya)</b><br><b>Symptoms:</b> Excess weight, lethargy.<br><b>🌿 Remedies:</b> Drink warm water with honey & lemon. Practice Surya Namaskar.<br><b>💊 Medicines:</b> Medohar Guggulu, Arogyavardhini Vati, Triphala.<br><i>⚠️ Disclaimer: Combine with diet and exercise for results.</i>"
+    },
+    {
+        "question": "Thyroid remedies",
+        "answer": "<b>🦋 Thyroid (Galaganda)</b><br><b>Symptoms:</b> Weight gain, fatigue, hair loss.<br><b>🌿 Remedies:</b> Consume coriander seed water. Use coconut oil for cooking.<br><b>💊 Medicines:</b> Kanchanara Guggulu, Vriddhi Vadhika Vati.<br><i>⚠️ Disclaimer: Regular TSH testing is required.</i>"
+    },
+    {
+        "question": "Psoriasis skin cure",
+        "answer": "<b>🔴 Psoriasis (Kitibha)</b><br><b>Symptoms:</b> Red, scaly patches.<br><b>🌿 Remedies:</b> Apply neem oil. Avoid sour/fermented foods.<br><b>💊 Medicines:</b> Kaishore Guggulu, Panchatikta Ghrita Guggulu, Khadirarishta.<br><i>⚠️ Disclaimer: Detox (Panchakarma) is often required.</i>"
+    },
+    {
+        "question": "Kidney Stones remedies",
+        "answer": "<b>🪨 Kidney Stones (Ashmari)</b><br><b>Symptoms:</b> Sharp back pain, painful urination.<br><b>🌿 Remedies:</b> Drink barley water and horse gram (kulthi) soup.<br><b>💊 Medicines:</b> Chandraprabha Vati, Punarnavasava, Gokshuradi Guggulu.<br><i>⚠️ Disclaimer: Consult a doctor for large stones.</i>"
+    },
+    {
+        "question": "Urinary Tract Infection UTI cure",
+        "answer": "<b>🔥 UTI (Mutrakrichra)</b><br><b>Symptoms:</b> Burning urination, frequent urge.<br><b>🌿 Remedies:</b> Drink coriander water and cranberry juice.<br><b>💊 Medicines:</b> Chandanasava, Gokshuradi Guggulu, Neeri Syrup.<br><i>⚠️ Disclaimer: Drink plenty of water. Consult if fever develops.</i>"
+    },
+    {
+        "question": "Menstrual Cramps relief",
+        "answer": "<b>🌸 Period Pain (Kashtartava)</b><br><b>Symptoms:</b> Abdominal pain, cramps.<br><b>🌿 Remedies:</b> Drink ginger tea. Apply warm castor oil pack on abdomen.<br><b>💊 Medicines:</b> Rajahpravartini Vati, Dashmularishta, Ashokarishta.<br><i>⚠️ Disclaimer: Rest and avoid cold foods during cycle.</i>"
+    },
+    {
+        "question": "PCOS PCOD management",
+        "answer": "<b>🏵️ PCOS</b><br><b>Symptoms:</b> Irregular periods, acne, weight gain.<br><b>🌿 Remedies:</b> Reduce carbs/sugar. Consume cinnamon and flaxseeds.<br><b>💊 Medicines:</b> Kanchanara Guggulu, Pushpadhanwa Ras, Kumaryasava.<br><i>⚠️ Disclaimer: Lifestyle change is the primary treatment.</i>"
+    },
+    {
+        "question": "Fatty Liver remedies",
+        "answer": "<b>🍺 Fatty Liver (Yakrit Roga)</b><br><b>Symptoms:</b> Fatigue, abdominal discomfort.<br><b>🌿 Remedies:</b> Drink aloe vera juice. Eat papaya and turmeric.<br><b>💊 Medicines:</b> Arogyavardhini Vati, Phalatrikadi Kwath, Liv-52.<br><i>⚠️ Disclaimer: Avoid alcohol and fried foods strictly.</i>"
+    },
+    {
+        "question": "Migraine treatment",
+        "answer": "<b>⚡ Migraine (Ardhavbhedak)</b><br><b>Symptoms:</b> One-sided headache, nausea.<br><b>🌿 Remedies:</b> Soak coriander seeds overnight and drink water. Massage head with Brahmi oil.<br><b>💊 Medicines:</b> Pathyadi Kadha, Godanti Bhasma, Shirashooladivajra Ras.<br><i>⚠️ Disclaimer: Identify and avoid your specific triggers.</i>"
+    },
+    {
+        "question": "Eczema remedies",
+        "answer": "<b>🧴 Eczema (Vicharchika)</b><br><b>Symptoms:</b> Itchy, cracked, inflamed skin.<br><b>🌿 Remedies:</b> Apply neem and turmeric paste. Wash with Triphala water.<br><b>💊 Medicines:</b> Khadirarishta, Kaishore Guggulu, Gandhak Rasayan.<br><i>⚠️ Disclaimer: Keep skin moisturized with coconut oil.</i>"
+    },
+    {
+        "question": "Ringworm Fungal Infection",
+        "answer": "<b>🍄 Fungal Infection (Dadru)</b><br><b>Symptoms:</b> Red circular rash, itching.<br><b>🌿 Remedies:</b> Apply paste of garlic or tulsi leaves. Use neem soap.<br><b>💊 Medicines:</b> Dadru Daman Churna, Gandhak Rasayan.<br><i>⚠️ Disclaimer: Keep the area dry and clean.</i>"
+    },
+    {
+        "question": "Tonsillitis cure",
+        "answer": "<b>🗣️ Tonsillitis (Tundikeri)</b><br><b>Symptoms:</b> Swollen tonsils, sore throat.<br><b>🌿 Remedies:</b> Gargle with turmeric salt water. Drink warm honey-lemon water.<br><b>💊 Medicines:</b> Kanchanara Guggulu, Khadiradi Vati, Septilin.<br><i>⚠️ Disclaimer: Consult a doctor if breathing is difficult.</i>"
+    },
+    {
+        "question": "Sinusitis treatment",
+        "answer": "<b>👃 Sinusitis (Peenas)</b><br><b>Symptoms:</b> Blocked nose, facial pain, headache.<br><b>🌿 Remedies:</b> Steam with eucalyptus oil. Put Shadbindu oil drops in nose.<br><b>💊 Medicines:</b> Laxmi Vilas Ras, Chitrak Haritaki.<br><i>⚠️ Disclaimer: Avoid cold wind and dairy products.</i>"
+    },
+    {
+        "question": "Bronchitis remedies",
+        "answer": "<b>🌬️ Bronchitis (Kasa)</b><br><b>Symptoms:</b> Persistent cough, mucus, chest pain.<br><b>🌿 Remedies:</b> Drink ginger and tulsi tea. Eat honey with black pepper.<br><b>💊 Medicines:</b> Vasavaleha, Kantakari Avaleha, Sitopaladi Churna.<br><i>⚠️ Disclaimer: Quit smoking and avoid pollutants.</i>"
+    },
+    {
+        "question": "Vertigo dizziness",
+        "answer": "<b>🌀 Vertigo (Bhrama)</b><br><b>Symptoms:</b> Spinning sensation, imbalance.<br><b>🌿 Remedies:</b> Drink water with crushed coriander seeds and amla powder.<br><b>💊 Medicines:</b> Sutashekhara Ras, Brahmi Vati.<br><i>⚠️ Disclaimer: Sit down immediately if you feel dizzy.</i>"
+    },
+    {
+        "question": "Sciatica pain relief",
+        "answer": "<b>🦵 Sciatica (Gridhrasi)</b><br><b>Symptoms:</b> Pain radiating from back down the leg.<br><b>🌿 Remedies:</b> Massage with Mahanarayan oil. Drink garlic milk.<br><b>💊 Medicines:</b> Trayodashang Guggulu, Ekangvir Ras, Rasnadi Guggulu.<br><i>⚠️ Disclaimer: Avoid forward bending exercises.</i>"
+    },
+    {
+        "question": "Gout High Uric Acid",
+        "answer": "<b>🥩 Gout (Vatarakta)</b><br><b>Symptoms:</b> Pain in big toe, high uric acid.<br><b>🌿 Remedies:</b> Drink Giloy juice. Eat cherries. Drink plenty of water.<br><b>💊 Medicines:</b> Kaishore Guggulu, Punarnavadi Guggulu, Guduchi Satva.<br><i>⚠️ Disclaimer: Avoid high protein foods like red meat and dal.</i>"
+    },
+    {
+        "question": "Cholesterol control",
+        "answer": "<b>🍟 High Cholesterol (Medoroga)</b><br><b>Symptoms:</b> High LDL, risk of heart disease.<br><b>🌿 Remedies:</b> Drink warm water with honey and garlic. Eat flaxseeds.<br><b>💊 Medicines:</b> Medohar Guggulu, Arjuna Bark Powder, Lasuna Vati.<br><i>⚠️ Disclaimer: Regular cardio exercise is essential.</i>"
+    },
+    {
+        "question": "Memory Loss remedies",
+        "answer": "<b>🧠 Memory Loss (Smriti Bhransha)</b><br><b>Symptoms:</b> Forgetfulness, lack of focus.<br><b>🌿 Remedies:</b> Eat 5 soaked almonds daily. Massage head with Brahmi oil.<br><b>💊 Medicines:</b> Shankhpushpi Syrup, Brahmi Ghrita, Smriti Sagar Ras.<br><i>⚠️ Disclaimer: Practice meditation and brain exercises.</i>"
+    },
+    {
+        "question": "Mouth Ulcers remedies",
+        "answer": "<b>👄 Mouth Ulcers (Mukha Paka)</b><br><b>Symptoms:</b> Painful sores inside mouth.<br><b>🌿 Remedies:</b> Apply honey and turmeric. Gargle with Triphala water.<br><b>💊 Medicines:</b> Khadiradi Vati, Irimedadi Taila (for gargle).<br><i>⚠️ Disclaimer: Avoid spicy and hot foods.</i>"
+    },
+    {
+        "question": "Bad Breath cure",
+        "answer": "<b>🤢 Bad Breath (Halitosis)</b><br><b>Symptoms:</b> Foul smell from mouth.<br><b>🌿 Remedies:</b> Chew fennel seeds (saunf) or clove. Clean tongue daily.<br><b>💊 Medicines:</b> Lavangadi Vati, Khadiradi Vati.<br><i>⚠️ Disclaimer: Maintain good oral hygiene.</i>"
+    },
+    {
+        "question": "Toothache remedies",
+        "answer": "<b>🦷 Toothache (Danta Shula)</b><br><b>Symptoms:</b> Sharp pain in tooth.<br><b>🌿 Remedies:</b> Keep a clove dipped in oil on the tooth. Gargle with salt water.<br><b>💊 Medicines:</b> Irimedadi Taila, Akarkara Churna.<br><i>⚠️ Disclaimer: Visit a dentist for cavities.</i>"
+    },
+    {
+        "question": "Dandruff treatment",
+        "answer": "<b>❄️ Dandruff (Darunaka)</b><br><b>Symptoms:</b> White flakes, itching scalp.<br><b>🌿 Remedies:</b> Apply sour curd or lemon juice. Wash with neem water.<br><b>💊 Medicines:</b> Gandhak Rasayan, Mahamanjisthadi Kwath.<br><i>⚠️ Disclaimer: Use mild herbal shampoos.</i>"
+    },
+    {
+        "question": "Premature Graying of Hair",
+        "answer": "<b>👵 Premature Graying (Palitya)</b><br><b>Symptoms:</b> White hair at young age.<br><b>🌿 Remedies:</b> Massage with coconut oil boiled with curry leaves.<br><b>💊 Medicines:</b> Bhringraj Oil, Amla Churna, Saptamrit Lauh.<br><i>⚠️ Disclaimer: Reduce stress and eat iron-rich foods.</i>"
+    },
+    {
+        "question": "Dark Circles remedies",
+        "answer": "<b>🐼 Dark Circles</b><br><b>Symptoms:</b> Dark pigmentation under eyes.<br><b>🌿 Remedies:</b> Apply cucumber slices or almond oil. Sleep 7-8 hours.<br><b>💊 Medicines:</b> Kumkumadi Taila (application).<br><i>⚠️ Disclaimer: Reduce screen time and stay hydrated.</i>"
+    },
+    {
+        "question": "Cracked Heels remedies",
+        "answer": "<b>🦶 Cracked Heels (Padadari)</b><br><b>Symptoms:</b> Fissures in heels, pain.<br><b>🌿 Remedies:</b> Apply castor oil or beeswax at night. Soak feet in warm salt water.<br><b>💊 Medicines:</b> Pinda Taila, Shatadhauta Ghrita.<br><i>⚠️ Disclaimer: Wear socks to lock in moisture.</i>"
+    },
+    {
+        "question": "Body Odor remedies",
+        "answer": "<b>😓 Body Odor</b><br><b>Symptoms:</b> Unpleasant smell from sweat.<br><b>🌿 Remedies:</b> Bath with neem water. Apply sandalwood paste.<br><b>💊 Medicines:</b> Usheerasava, Chandanasava.<br><i>⚠️ Disclaimer: Wear breathable cotton clothes.</i>"
+    },
+    {
+        "question": "Hiccups cure",
+        "answer": "<b>🙊 Hiccups (Hikka)</b><br><b>Symptoms:</b> Involuntary diaphragm spasms.<br><b>🌿 Remedies:</b> Hold breath for 10 seconds. Drink cold water. Eat sugar.<br><b>💊 Medicines:</b> Mayur Chandrika Bhasma, Eladi Churna.<br><i>⚠️ Disclaimer: Consult if hiccups last >48 hours.</i>"
+    },
+    {
+        "question": "Snoring remedies",
+        "answer": "<b>💤 Snoring</b><br><b>Symptoms:</b> Noisy breathing during sleep.<br><b>🌿 Remedies:</b> Put 2 drops of ghee in nostrils at night (Nasya). Sleep on side.<br><b>💊 Medicines:</b> Anu Taila (for Nasya).<br><i>⚠️ Disclaimer: Lose weight if obese to reduce snoring.</i>"
+    },
+    {
+        "question": "Nosebleed cure",
+        "answer": "<b>🩸 Nosebleed (Nakshir)</b><br><b>Symptoms:</b> Bleeding from nose.<br><b>🌿 Remedies:</b> Apply cold pack on nose. Put drops of onion juice or Durva grass juice.<br><b>💊 Medicines:</b> Anu Taila, Bol Baddha Ras.<br><i>⚠️ Disclaimer: Keep head elevated. Consult if frequent.</i>"
+    },
+    {
+        "question": "Leg Cramps remedies",
+        "answer": "<b>🦵 Leg Cramps (Pindikodveshtana)</b><br><b>Symptoms:</b> Sudden muscle tightness.<br><b>🌿 Remedies:</b> Massage with warm mustard oil. Eat bananas (potassium).<br><b>💊 Medicines:</b> Mahanarayan Oil, Vishtinduk Vati.<br><i>⚠️ Disclaimer: Stay hydrated to prevent cramps.</i>"
+    },
+    {
+        "question": "Vomiting and Nausea",
+        "answer": "<b>🤮 Vomiting (Chardi)</b><br><b>Symptoms:</b> Urge to vomit, queasiness.<br><b>🌿 Remedies:</b> Lick honey with ginger juice. Drink mint water or fennel tea.<br><b>💊 Medicines:</b> Mayur Chandrika Bhasma, Eladi Vati, Sutshekhar Ras.<br><i>⚠️ Disclaimer: Sip water slowly to prevent dehydration.</i>"
+    },
+    {
+        "question": "Fatigue and Weakness",
+        "answer": "<b>🔋 Fatigue (Klama)</b><br><b>Symptoms:</b> Constant tiredness, low energy.<br><b>🌿 Remedies:</b> Eat dates and raisins. Drink Ashwagandha milk.<br><b>💊 Medicines:</b> Chyawanprash, Shilajit, Ashwagandha Churna.<br><i>⚠️ Disclaimer: Ensure you get adequate sleep.</i>"
+    },
+    {
+        "question": "Osteoporosis Weak Bones",
+        "answer": "<b>🦴 Osteoporosis (Asthi Kshaya)</b><br><b>Symptoms:</b> Brittle bones, frequent fractures.<br><b>🌿 Remedies:</b> Eat sesame seeds and calcium-rich foods. Sunbathe in morning.<br><b>💊 Medicines:</b> Praval Pishti, Laksha Guggulu, Mukta Shukti Bhasma.<br><i>⚠️ Disclaimer: Avoid falls and heavy lifting.</i>"
+    },
+    {
+        "question": "Conjunctivitis Pink Eye",
+        "answer": "<b>👁️ Conjunctivitis (Netra Abhishyanda)</b><br><b>Symptoms:</b> Redness, itching, discharge.<br><b>🌿 Remedies:</b> Wash eyes with Triphala water. Apply rose water drops.<br><b>💊 Medicines:</b> Saptamrit Lauh, Triphala Ghrita.<br><i>⚠️ Disclaimer: Highly contagious; do not share towels.</i>"
+    },
+    {
+        "question": "Eye Strain remedies",
+        "answer": "<b>👓 Eye Strain</b><br><b>Symptoms:</b> Tired, burning eyes, blurred vision.<br><b>🌿 Remedies:</b> Wash eyes with cold water. Practice Trataka (candle gazing).<br><b>💊 Medicines:</b> Maha Triphala Ghrita (Netra Basti), Saptamrit Lauh.<br><i>⚠️ Disclaimer: Follow the 20-20-20 rule for screens.</i>"
+    },
+    {
+        "question": "Earache relief",
+        "answer": "<b>👂 Earache (Karnashula)</b><br><b>Symptoms:</b> Pain in ear.<br><b>🌿 Remedies:</b> Put 2 drops of warm garlic/mustard oil. Avoid cold wind.<br><b>💊 Medicines:</b> Bilvadi Taila, Apamarga Kshara Taila.<br><i>⚠️ Disclaimer: Do not put oil if there is discharge or perforation.</i>"
+    },
+    {
+        "question": "Varicose Veins treatment",
+        "answer": "<b>🦵 Varicose Veins (Siragranthi)</b><br><b>Symptoms:</b> Swollen, twisted blue veins.<br><b>🌿 Remedies:</b> Massage gently with warm oil (upward). Elevate legs.<br><b>💊 Medicines:</b> Kaishore Guggulu, Sahacharadi Taila.<br><i>⚠️ Disclaimer: Avoid standing for long hours.</i>"
+    },
+    {
+        "question": "Erectile Dysfunction ED",
+        "answer": "<b>⚠️ Erectile Dysfunction (Klaibya)</b><br><b>Symptoms:</b> Difficulty maintaining erection.<br><b>🌿 Remedies:</b> Drink milk with Ashwagandha and Shilajit. Eat almonds.<br><b>💊 Medicines:</b> Ashwagandharishta, Shilajit Capsule, Makardhwaj.<br><i>⚠️ Disclaimer: Consult a specialist; avoid self-medication.</i>"
+    },
+    {
+        "question": "Leucorrhea White Discharge",
+        "answer": "<b>🚺 Leucorrhea (Shwetapradara)</b><br><b>Symptoms:</b> Excessive white discharge, weakness.<br><b>🌿 Remedies:</b> Drink rice water (Tandulodaka). Eat ripe banana with ghee.<br><b>💊 Medicines:</b> Pushyanug Churna, Pradrantak Lauh, Lodhrasava.<br><i>⚠️ Disclaimer: Maintain hygiene and consult if foul-smelling.</i>"
+    },
+    {
+        "question": "Bedwetting in Kids",
+        "answer": "<b>🛏️ Bedwetting (Shayyamutra)</b><br><b>Symptoms:</b> Urinating during sleep.<br><b>🌿 Remedies:</b> Give 1 tsp honey + turmeric before bed. Give 2 walnuts daily.<br><b>💊 Medicines:</b> Krimikuthar Ras (if worms), Shilajit.<br><i>⚠️ Disclaimer: Reduce fluid intake after evening.</i>"
+    },
+    {
+        "question": "Worms in stomach",
+        "answer": "<b>🪱 Worms (Krimi Roga)</b><br><b>Symptoms:</b> Stomach pain, itching, grinding teeth.<br><b>🌿 Remedies:</b> Eat raw garlic. Drink neem juice or vidang powder.<br><b>💊 Medicines:</b> Krimikuthar Ras, Vidangarishta.<br><i>⚠️ Disclaimer: Maintain hand hygiene.</i>"
+    },
+    {
+        "question": "Loss of Appetite",
+        "answer": "<b>🍽️ Loss of Appetite (Aruchi)</b><br><b>Symptoms:</b> No desire to eat.<br><b>🌿 Remedies:</b> Drink ginger juice with lemon & salt. Eat pomegranate.<br><b>💊 Medicines:</b> Chitrakadi Vati, Lavan Bhaskar Churna.<br><i>⚠️ Disclaimer: Eat small, frequent meals.</i>"
+    },
+    {
+        "question": "Low Libido",
+        "answer": "<b>📉 Low Libido</b><br><b>Symptoms:</b> Lack of sexual desire.<br><b>🌿 Remedies:</b> Add saffron and nutmeg to warm milk. Eat zinc-rich foods.<br><b>💊 Medicines:</b> Shatavari Gulam (Women), Ashwagandha (Men).<br><i>⚠️ Disclaimer: Stress management is key.</i>"
+    },
+    {
+        "question": "Premature Ejaculation",
+        "answer": "<b>⏳ Premature Ejaculation (Shughrapatan)</b><br><b>Symptoms:</b> Ejaculation happens too quickly.<br><b>🌿 Remedies:</b> Practice Kegel exercises. Drink almond milk.<br><b>💊 Medicines:</b> Veerya Shodhan Vati, Confido.<br><i>⚠️ Disclaimer: Reduce anxiety and performance pressure.</i>"
+    },
+    {
+        "question": "Menopause symptoms",
+        "answer": "<b>👩‍🦳 Menopause (Rajonivritti)</b><br><b>Symptoms:</b> Hot flashes, mood swings.<br><b>🌿 Remedies:</b> Drink Shatavari milk. Eat cooling foods (fennel, coriander).<br><b>💊 Medicines:</b> Saraswatarishta, Ashokarishta.<br><i>⚠️ Disclaimer: Stay active and take calcium supplements.</i>"
+    },
+    {
+        "question": "Morning Sickness",
+        "answer": "<b>🤰 Morning Sickness (Garbhini Chardi)</b><br><b>Symptoms:</b> Nausea during pregnancy.<br><b>🌿 Remedies:</b> Smell fresh lemon/ginger. Drink coconut water.<br><b>💊 Medicines:</b> Eladi Vati (consult doctor first).<br><i>⚠️ Disclaimer: Eat small, dry snacks like crackers.</i>"
+    },
+    {
+        "question": "Frozen Shoulder",
+        "answer": "<b>🦾 Frozen Shoulder (Apabahuka)</b><br><b>Symptoms:</b> Stiffness and pain in shoulder.<br><b>🌿 Remedies:</b> Gentle arm rotations. Warm oil massage followed by steam.<br><b>💊 Medicines:</b> Trayodashang Guggulu, Mahanarayan Oil.<br><i>⚠️ Disclaimer: Physiotherapy exercises are essential.</i>"
+    },
+    {
+        "question": "Back Pain cure",
+        "answer": "<b>🔙 Back Pain (Kati Shula)</b><br><b>Symptoms:</b> Lower back stiffness and ache.<br><b>🌿 Remedies:</b> Massage with warm sesame oil. Use hot water bag.<br><b>💊 Medicines:</b> Simhanad Guggulu, Rumalaya Gel, Trayodashang Guggulu.<br><i>⚠️ Disclaimer: Maintain good posture.</i>"
+    },
+    {
+        "question": "Pyorrhea Bleeding Gums",
+        "answer": "<b>🦷 Bleeding Gums (Sheetada)</b><br><b>Symptoms:</b> Blood during brushing, bad breath.<br><b>🌿 Remedies:</b> Massage gums with turmeric & mustard oil. Rinse with Triphala.<br><b>💊 Medicines:</b> Irimedadi Taila, Khadiradi Vati.<br><i>⚠️ Disclaimer: Use soft toothbrush.</i>"
+    },
+    {
+        "question": "Dry Eyes syndrome",
+        "answer": "<b>👁️ Dry Eyes (Shushkakshipaka)</b><br><b>Symptoms:</b> Gritty sensation, dryness.<br><b>🌿 Remedies:</b> Put a drop of castor oil or pure ghee in eyes at night.<br><b>💊 Medicines:</b> Jeevanti Ghrita (Netra Tarpana).<br><i>⚠️ Disclaimer: Blink often while using screens.</i>"
+    },
+    {
+        "question": "Allergic Rhinitis Hay Fever",
+        "answer": "<b>🤧 Allergies (Vata-Kaphaja Pratishaya)</b><br><b>Symptoms:</b> Sneezing, runny nose, itchy eyes.<br><b>🌿 Remedies:</b> Drink turmeric milk. Steam with eucalyptus.<br><b>💊 Medicines:</b> Haridrakhand, Chitrak Haritaki.<br><i>⚠️ Disclaimer: Identify and avoid allergens.</i>"
+    },
+    {
+        "question": "Urticaria Hives",
+        "answer": "<b>🔴 Hives (Sheetapitta)</b><br><b>Symptoms:</b> Red, itchy raised welts on skin.<br><b>🌿 Remedies:</b> Apply kokum butter or aloe vera. Drink ginger water.<br><b>💊 Medicines:</b> Haridrakhand, Arogyavardhini Vati.<br><i>⚠️ Disclaimer: Avoid cold air and sour foods.</i>"
+    },
+    {
+        "question": "Anal Fissure",
+        "answer": "<b>🔥 Anal Fissure (Parikartika)</b><br><b>Symptoms:</b> Sharp pain/bleeding during bowel movement.<br><b>🌿 Remedies:</b> Apply ghee or coconut oil locally. Drink psyllium husk (Isabgol).<br><b>💊 Medicines:</b> Jatyadi Taila (Application), Triphala Guggulu.<br><i>⚠️ Disclaimer: Avoid constipation strictly.</i>"
+    },
+    {
+        "question": "Gallstones remedies",
+        "answer": "<b>🪨 Gallstones (Pittashmari)</b><br><b>Symptoms:</b> Pain in upper right abdomen, nausea.<br><b>🌿 Remedies:</b> Drink apple juice and warm water with lemon.<br><b>💊 Medicines:</b> Tamra Bhasma, Arogyavardhini Vati (Under supervision).<br><i>⚠️ Disclaimer: Large stones may require surgery.</i>"
+    },
+    {
+        "question": "Benefits of Tulsi Holy Basil",
+        "answer": "<b>🌿 Tulsi (Holy Basil)</b><br><b>Properties:</b> Anti-bacterial, Anti-viral, Adaptogen.<br><b>Uses:</b> Cures cold, cough, and boosts immunity.<br><b>How to use:</b> Chew 5 leaves daily or drink Tulsi tea.<br><i>⚠️ Disclaimer: Avoid excessive intake if taking blood thinners.</i>"
+    },
+    {
+        "question": "Benefits of Turmeric Haldi",
+        "answer": "<b>🌿 Turmeric (Haridra)</b><br><b>Properties:</b> Anti-inflammatory, Antioxidant.<br><b>Uses:</b> Heals wounds, improves skin, reduces joint pain.<br><b>How to use:</b> Drink Golden Milk (Haldi Doodh) at night.<br><i>⚠️ Disclaimer: High doses may cause stomach upset.</i>"
+    },
+    {
+        "question": "Benefits of Neem",
+        "answer": "<b>🌿 Neem (Nimba)</b><br><b>Properties:</b> Blood purifier, Anti-fungal.<br><b>Uses:</b> Treats acne, skin infections, and dandruff.<br><b>How to use:</b> Apply neem paste on skin or chew 2-3 leaves.<br><i>⚠️ Disclaimer: Do not consume if planning pregnancy.</i>"
+    },
+    {
+        "question": "Benefits of Ashwagandha",
+        "answer": "<b>🌿 Ashwagandha (Indian Ginseng)</b><br><b>Properties:</b> Rejuvenating, Stress-reliever.<br><b>Uses:</b> Reduces stress, boosts strength and vitality.<br><b>How to use:</b> Take 1 tsp powder with warm milk at night.<br><i>⚠️ Disclaimer: Avoid in case of hyperthyroidism.</i>"
+    },
+    {
+        "question": "Benefits of Amla Indian Gooseberry",
+        "answer": "<b>🌿 Amla (Amalaki)</b><br><b>Properties:</b> Richest source of Vitamin C, Anti-aging.<br><b>Uses:</b> Good for hair, eyes, and digestion.<br><b>How to use:</b> Eat 1 fresh Amla daily or drink juice.<br><i>⚠️ Disclaimer: Avoid eating at night if prone to cold.</i>"
+    },
+    {
+        "question": "Benefits of Giloy Guduchi",
+        "answer": "<b>🌿 Giloy (Amrita)</b><br><b>Properties:</b> Immunomodulator, Anti-pyretic.<br><b>Uses:</b> Treats chronic fever (Dengue/Malaria), boosts immunity.<br><b>How to use:</b> Drink Giloy juice or decoction daily.<br><i>⚠️ Disclaimer: Monitor blood sugar if diabetic.</i>"
+    },
+    {
+        "question": "Benefits of Aloe Vera Ghritkumari",
+        "answer": "<b>🌿 Aloe Vera (Ghritkumari)</b><br><b>Properties:</b> Cooling, Hydrating.<br><b>Uses:</b> Soothes burns, improves skin, aids digestion.<br><b>How to use:</b> Drink 30ml juice empty stomach or apply gel externally.<br><i>⚠️ Disclaimer: Avoid excessive consumption during pregnancy.</i>"
+    },
+    {
+        "question": "Benefits of Triphala",
+        "answer": "<b>🌿 Triphala (Three Fruits)</b><br><b>Properties:</b> Detoxifier, Laxative.<br><b>Uses:</b> Cures constipation, improves eye health.<br><b>How to use:</b> Take 1 tsp churna with warm water at bedtime.<br><i>⚠️ Disclaimer: Not suitable for diarrhea.</i>"
+    },
+    {
+        "question": "Benefits of Ginger Adrak",
+        "answer": "<b>🌿 Ginger (Shunthi)</b><br><b>Properties:</b> Digestive, Anti-nausea.<br><b>Uses:</b> Treats indigestion, motion sickness, cold.<br><b>How to use:</b> Drink ginger tea or chew with salt.<br><i>⚠️ Disclaimer: Avoid high doses in acidity/ulcers.</i>"
+    },
+    {
+        "question": "Benefits of Mulethi Licorice",
+        "answer": "<b>🌿 Mulethi (Yashtimadhu)</b><br><b>Properties:</b> Soothing, Expectorant.<br><b>Uses:</b> Cures sore throat, acidity, and cough.<br><b>How to use:</b> Chew a small stick or drink tea.<br><i>⚠️ Disclaimer: Avoid if you have high blood pressure.</i>"
+    },
+    {
+        "question": "Benefits of Brahmi",
+        "answer": "<b>🌿 Brahmi (Bacopa)</b><br><b>Properties:</b> Memory booster, Calming.<br><b>Uses:</b> Improves memory, concentration, reduces anxiety.<br><b>How to use:</b> Take Brahmi Ghrita or powder with milk.<br><i>⚠️ Disclaimer: May cause slow heart rate in some.</i>"
+    },
+    {
+        "question": "Benefits of Shatavari",
+        "answer": "<b>🌿 Shatavari</b><br><b>Properties:</b> Female tonic, Galactogogue.<br><b>Uses:</b> Balances hormones, supports lactation.<br><b>How to use:</b> Take 1 tsp powder with milk.<br><i>⚠️ Disclaimer: Avoid if having estrogen-sensitive issues.</i>"
+    },
+    {
+        "question": "Benefits of Clove Laung",
+        "answer": "<b>🌿 Clove (Lavanga)</b><br><b>Properties:</b> Analgesic, Anti-bacterial.<br><b>Uses:</b> Instant relief for toothache and bad breath.<br><b>How to use:</b> Keep one clove in mouth or apply oil.<br><i>⚠️ Disclaimer: Clove oil can burn sensitive skin.</i>"
+    },
+    {
+        "question": "Benefits of Cinnamon Dalchini",
+        "answer": "<b>🌿 Cinnamon (Dalchini)</b><br><b>Properties:</b> Metabolic booster, Warming.<br><b>Uses:</b> Controls blood sugar (Diabetes), improves digestion.<br><b>How to use:</b> Add a pinch to tea or food.<br><i>⚠️ Disclaimer: High doses may harm the liver.</i>"
+    },
+    {
+        "question": "Benefits of Fennel Saunf",
+        "answer": "<b>🌿 Fennel (Mishreya)</b><br><b>Properties:</b> Cooling, Carminative.<br><b>Uses:</b> Freshens breath, aids digestion, reduces acidity.<br><b>How to use:</b> Chew 1 tsp after meals.<br><i>⚠️ Disclaimer: Safe in moderation.</i>"
+    },
+    {
+        "question": "Benefits of Cumin Jeera",
+        "answer": "<b>🌿 Cumin (Jeeraka)</b><br><b>Properties:</b> Digestive aid.<br><b>Uses:</b> Relieves bloating, gas, and improves metabolism.<br><b>How to use:</b> Drink Jeera water in the morning.<br><i>⚠️ Disclaimer: Generally safe.</i>"
+    },
+    {
+        "question": "Benefits of Fenugreek Methi",
+        "answer": "<b>🌿 Fenugreek (Methika)</b><br><b>Properties:</b> Anti-diabetic, Anti-inflammatory.<br><b>Uses:</b> Controls diabetes, reduces hair fall.<br><b>How to use:</b> Soak seeds overnight and eat.<br><i>⚠️ Disclaimer: May lower blood sugar too much if on medication.</i>"
+    },
+    {
+        "question": "Benefits of Coriander Dhaniya",
+        "answer": "<b>🌿 Coriander (Dhanyaka)</b><br><b>Properties:</b> Cooling, Diuretic.<br><b>Uses:</b> Treats UTI, acidity, and burning sensation.<br><b>How to use:</b> Drink coriander seed water.<br><i>⚠️ Disclaimer: Safe for most people.</i>"
+    },
+    {
+        "question": "Benefits of Black Pepper Kali Mirch",
+        "answer": "<b>🌿 Black Pepper (Maricha)</b><br><b>Properties:</b> Bio-enhancer, Warming.<br><b>Uses:</b> Clears sinuses, improves digestion.<br><b>How to use:</b> Mix with honey for cough.<br><i>⚠️ Disclaimer: Avoid in hyperacidity.</i>"
+    },
+    {
+        "question": "Benefits of Cardamom Elaichi",
+        "answer": "<b>🌿 Cardamom (Ela)</b><br><b>Properties:</b> Aromatic, Digestive.<br><b>Uses:</b> Nausea relief, mouth freshener.<br><b>How to use:</b> Chew 1-2 pods after meals.<br><i>⚠️ Disclaimer: Excessive use may cause gallstones issues.</i>"
+    },
+    {
+        "question": "Benefits of Guggul",
+        "answer": "<b>🌿 Guggul</b><br><b>Properties:</b> Anti-cholesterol, Anti-inflammatory.<br><b>Uses:</b> Weight loss, arthritis, cholesterol control.<br><b>How to use:</b> Take Medohar Guggulu tablets.<br><i>⚠️ Disclaimer: Avoid during pregnancy.</i>"
+    },
+    {
+        "question": "Benefits of Arjuna Bark",
+        "answer": "<b>🌿 Arjuna (Arjun Chaal)</b><br><b>Properties:</b> Cardioprotective.<br><b>Uses:</b> Strengthens heart muscles, controls BP.<br><b>How to use:</b> Boil bark in milk (Ksheerapaka).<br><i>⚠️ Disclaimer: Consult cardiologist before replacing meds.</i>"
+    },
+    {
+        "question": "Benefits of Bhringraj",
+        "answer": "<b>🌿 Bhringraj (False Daisy)</b><br><b>Properties:</b> Hair tonic.<br><b>Uses:</b> Promotes hair growth, liver health.<br><b>How to use:</b> Apply oil externally.<br><i>⚠️ Disclaimer: Cooling effect; avoid at night if prone to cold.</i>"
+    },
+    {
+        "question": "Benefits of Shankhpushpi",
+        "answer": "<b>🌿 Shankhpushpi</b><br><b>Properties:</b> Brain tonic.<br><b>Uses:</b> Improves concentration, reduces mental fatigue.<br><b>How to use:</b> Take syrup or powder with milk.<br><i>⚠️ Disclaimer: Generally safe.</i>"
+    },
+    {
+        "question": "Benefits of Manjistha",
+        "answer": "<b>🌿 Manjistha</b><br><b>Properties:</b> Blood purifier.<br><b>Uses:</b> Treats skin pigmentation, acne, detox.<br><b>How to use:</b> Take powder with honey or apply as face pack.<br><i>⚠️ Disclaimer: Avoid during pregnancy.</i>"
+    },
+    {
+        "question": "(Answer in Hindi): Benefits of Tulsi",
+        "answer": "<b>🌿 तुलसी (Tulsi)</b><br><b>गुण:</b> एंटी-बैक्टीरियल, रोग प्रतिरोधक।<br><b>उपयोग:</b> सर्दी, खांसी और बुखार में लाभकारी।<br><b>प्रयोग:</b> 5 पत्तियां चबाएं या चाय पिएं।<br><i>⚠️ चेतावनी: खून पतला करने वाली दवाओं के साथ अधिक सेवन न करें।</i>"
+    },
+    {
+        "question": "(Answer in Marathi): Benefits of Tulsi",
+        "answer": "<b>🌿 तुळस (Tulsi)</b><br><b>गुणधर्म:</b> रोगप्रतिकारशक्ती वाढवणारी.<br><b>उपयोग:</b> सर्दी, खोकला आणि तापावर गुणकारी.<br><b>वापर:</b> दररोज 5 पाने चावा किंवा काढा प्या.<br><i>⚠️ खबरदारी: रक्त पातळ करणाऱ्या औषधांसह जास्त वापर टाळा.</i>"
+    },
+    {
+        "question": "(Answer in Hindi): Benefits of Turmeric",
+        "answer": "<b>🌿 हल्दी (Haridra)</b><br><b>गुण:</b> सूजन कम करने वाली, एंटीसेप्टिक।<br><b>उपयोग:</b> चोट, त्वचा रोग और दर्द में।<br><b>प्रयोग:</b> रात में हल्दी वाला दूध पिएं।<br><i>⚠️ चेतावनी: पित्त प्रकृति वाले कम मात्रा में लें।</i>"
+    },
+    {
+        "question": "(Answer in Marathi): Benefits of Turmeric",
+        "answer": "<b>🌿 हळद (Turmeric)</b><br><b>गुणधर्म:</b> जंतुनाशक, सूज कमी करणारी.<br><b>उपयोग:</b> जखम भरण्यासाठी आणि त्वचा उजळण्यासाठी.<br><b>वापर:</b> रात्री हळद घातलेले दूध प्या.<br><i>⚠️ खबरदारी: उष्णता असल्यास कमी वापरा.</i>"
+    },
+    {
+        "question": "(Answer in Hindi): Benefits of Amla",
+        "answer": "<b>🌿 आँवला (Amla)</b><br><b>गुण:</b> विटामिन सी का सर्वोत्तम स्रोत।<br><b>उपयोग:</b> बाल, आंखें और पाचन के लिए उत्तम।<br><b>प्रयोग:</b> रोज एक ताज़ा आँवला खाएं।<br><i>⚠️ चेतावनी: रात में खाने से बचें।</i>"
+    },
+    {
+        "question": "(Answer in Hindi): Benefits of Ashwagandha",
+        "answer": "<b>🌿 अश्वगंधा (Ashwagandha)</b><br><b>गुण:</b> तनाव नाशक, शक्ति वर्धक।<br><b>उपयोग:</b> मानसिक तनाव कम करता है और शारीरिक क्षमता बढ़ाता है।<br><b>प्रयोग:</b> रात में 1 चम्मच चूर्ण गर्म दूध के साथ लें।<br><i>⚠️ चेतावनी: थायराइड की समस्या में डॉक्टर से सलाह लें।</i>"
+    },
+    {
+        "question": "(Answer in Marathi): Benefits of Ashwagandha",
+        "answer": "<b>🌿 अश्वगंधा (Ashwagandha)</b><br><b>गुणधर्म:</b> शक्तीवर्धक, ताण-तणाव कमी करणारे.<br><b>उपयोग:</b> मानसिक थकवा घालवण्यासाठी आणि ताकद वाढवण्यासाठी.<br><b>वापर:</b> रात्री गरम दुधासोबत १ चमचा पावडर घ्या.<br><i>⚠️ खबरदारी: थायरॉईडची समस्या असल्यास डॉक्टरांचा सल्ला घ्या.</i>"
+    },
+    {
+        "question": "(Answer in Hindi): Benefits of Giloy",
+        "answer": "<b>🌿 गिलोय (Giloy)</b><br><b>गुण:</b> रोग प्रतिरोधक, ज्वरनाशक।<br><b>उपयोग:</b> डेंगू, मलेरिया और पुराने बुखार में लाभकारी।<br><b>प्रयोग:</b> गिलोय का रस या काढ़ा पिएं।<br><i>⚠️ चेतावनी: शुगर लेवल कम हो सकता है, डायबिटिक मरीज ध्यान दें।</i>"
+    },
+    {
+        "question": "(Answer in Marathi): Benefits of Giloy",
+        "answer": "<b>🌿 गुळवेल (Giloy)</b><br><b>गुणधर्म:</b> रोगप्रतिकारशक्ती वाढवणारी, ताप कमी करणारी.<br><b>उपयोग:</b> डेंग्यू, मलेरिया आणि जुनाट तापावर गुणकारी.<br><b>वापर:</b> गुळवेलाचा रस किंवा काढा प्या.<br><i>⚠️ खबरदारी: साखरेची पातळी कमी होऊ शकते, मधुमेही रुग्णांनी काळजी घ्यावी.</i>"
+    },
+    {
+        "question": "(Answer in Hindi): Cure for Acidity",
+        "answer": "<b>🔥 एसिडिटी (Acidity)</b><br><b>लक्षण:</b> सीने में जलन, खट्टी डकारें।<br><b>🌿 उपाय:</b> धनिये का पानी पिएं या सौंफ चबाएं।<br><b>💊 दवा:</b> अविपत्तिकर चूर्ण, सूतशेखर रस।<br><i>⚠️ चेतावनी: ज्यादा मिर्च-मसालेदार खाना न खाएं।</i>"
+    },
+    {
+        "question": "(Answer in Marathi): Cure for Acidity",
+        "answer": "<b>🔥 पित्त/ऍसिडिटी (Acidity)</b><br><b>लक्षणे:</b> छातीत जळजळ, आंबट ढेकर.<br><b>🌿 उपाय:</b> धण्याचे पाणी प्या किंवा बडीशेप चावून खा.<br><b>💊 औषध:</b> अविपत्तिकर चूर्ण, कामदुधा रस.<br><i>⚠️ खबरदारी: तिखट आणि मसालेदार पदार्थ टाळा.</i>"
+    },
+    {
+        "question": "(Answer in Hindi): Joint Pain Relief",
+        "answer": "<b>🦴 जोड़ों का दर्द (Joint Pain)</b><br><b>लक्षण:</b> घुटनों में सूजन और अकड़न।<br><b>🌿 उपाय:</b> महानारायण तेल से मालिश करें। हल्दी वाला दूध पिएं।<br><b>💊 दवा:</b> योगराज गुग्गुलु, शल्लकी।<br><i>⚠️ चेतावनी: ठंडी चीजों से परहेज करें।</i>"
+    },
+    {
+        "question": "(Answer in Marathi): Joint Pain Relief",
+        "answer": "<b>🦴 सांधेदुखी (Joint Pain)</b><br><b>लक्षणे:</b> सांध्यांवर सूज आणि हालचालीत त्रास.<br><b>🌿 उपाय:</b> महानारायण तेलाने मालिश करा. हळद घातलेले दूध प्या.<br><b>💊 औषध:</b> योगराज गुग्गुलु, महा रास्नादी काढा.<br><i>⚠️ खबरदारी: थंड हवेत जाणे टाळा.</i>"
+    },
+    {
+        "question": "(Answer in Hindi): Hair Fall Treatment",
+        "answer": "<b>💇‍♀️ बालों का झड़ना (Hair Fall)</b><br><b>लक्षण:</b> बाल पतले होना, गुच्छों में टूटना।<br><b>🌿 उपाय:</b> भृंगराज तेल से मालिश करें। आंवला खाएं।<br><b>💊 दवा:</b> सप्तामृत लौह, भृंगराजासव।<br><i>⚠️ चेतावनी: तनाव कम लें और पौष्टिक भोजन करें।</i>"
+    },
+    {
+        "question": "(Answer in Marathi): Hair Fall Treatment",
+        "answer": "<b>💇‍♀️ केस गळणे (Hair Fall)</b><br><b>लक्षणे:</b> केस पातळ होणे, जास्त केस गळणे.<br><b>🌿 उपाय:</b> भृंगराज तेलाने मसाज करा. आवळा खा.<br><b>💊 औषध:</b> भृंगराजासव, नरसिंह रसायन.<br><i>⚠️ खबरदारी: तणाव कमी करा आणि वेळेवर झोपा.</i>"
+    },
+    {
+        "question": "(Answer in Hindi): Benefits of Triphala",
+        "answer": "<b>🌿 त्रिफला (Triphala)</b><br><b>गुण:</b> पाचन सुधारक, डिटॉक्स।<br><b>उपयोग:</b> कब्ज दूर करता है और आंखों के लिए अच्छा है।<br><b>प्रयोग:</b> रात में 1 चम्मच चूर्ण गर्म पानी से लें।<br><i>⚠️ चेतावनी: दस्त होने पर इसका सेवन न करें।</i>"
+    },
+    {
+        "question": "(Answer in Marathi): Benefits of Triphala",
+        "answer": "<b>🌿 त्रिफळा (Triphala)</b><br><b>गुणधर्म:</b> पचन सुधारक, रेचक.<br><b>उपयोग:</b> बद्धकोष्ठता (Constipation) दूर करण्यासाठी.<br><b>वापर:</b> रात्री गरम पाण्यासोबत १ चमचा चूर्ण घ्या.<br><i>⚠️ खबरदारी: जुलाब होत असल्यास घेऊ नका.</i>"
+    },
+    {
+        "question": "(Answer in Hindi): Remedies for Headache",
+        "answer": "<b>🤯 सिरदर्द (Headache)</b><br><b>लक्षण:</b> सिर में भारीपन या चुभन।<br><b>🌿 उपाय:</b> माथे पर अदरक का लेप लगाएं। नाक में 2 बूंद घी डालें।<br><b>💊 दवा:</b> पथ्यादि काढ़ा, गोदंती भस्म।<br><i>⚠️ चेतावनी: अगर दर्द लगातार रहे तो डॉक्टर को दिखाएं।</i>"
+    },
+    {
+        "question": "(Answer in Marathi): Remedies for Headache",
+        "answer": "<b>🤯 डोकेदुखी (Headache)</b><br><b>लक्षणे:</b> डोके जड होणे, वेदना होणे.<br><b>🌿 उपाय:</b> सुंठीचा लेप लावा. नाकात तूप टाका (नस्य).<br><b>💊 औषध:</b> पथ्यादि काढा, त्रिभुवन कीर्ती रस.<br><i>⚠️ खबरदारी: जास्त वेळ उपाशी राहू नका.</i>"
+    },
+    {
+        "question": "(Answer in Hindi): Cough and Cold",
+        "answer": "<b>🥶 सर्दी और खांसी (Cold & Cough)</b><br><b>लक्षण:</b> बहती नाक, गले में खराश।<br><b>🌿 उपाय:</b> अदरक, तुलसी और शहद की चाय पिएं। भाप लें।<br><b>💊 दवा:</b> सितोपलादि चूर्ण, लक्ष्मी विलास रस।<br><i>⚠️ चेतावनी: ठंडे पानी से बचें।</i>"
+    },
+    {
+        "question": "(Answer in Marathi): Cough and Cold",
+        "answer": "<b>🥶 सर्दी आणि खोकला (Cold & Cough)</b><br><b>लक्षणे:</b> नाक गळणे, घसा खवखवणे.<br><b>🌿 उपाय:</b> आले, तुळस आणि मधाचा चहा प्या. वाफ घ्या.<br><b>💊 औषध:</b> सितोपलादि चूर्ण, तालिसादी चूर्ण.<br><i>⚠️ खबरदारी: थंड पदार्थ खाणे टाळा.</i>"
+    },
+    {
+        "question": "Benefits of Brahmi in Hindi",
+        "answer": "<b>🌿 ब्राह्मी (Brahmi)</b><br><b>गुण:</b> स्मरणशक्ति वर्धक, शीतलक।<br><b>उपयोग:</b> याददाश्त बढ़ाती है और मानसिक तनाव कम करती है।<br><b>प्रयोग:</b> दूध के साथ ब्राह्मी घृत या चूर्ण लें।<br><i>⚠️ चेतावनी: धीमी हृदय गति वाले लोग सावधानी बरतें।</i>"
+    },
+    {
+        "question": "Benefits of Neem in Hindi",
+        "answer": "<b>🌿 नीम (Neem)</b><br><b>गुण:</b> रक्त शोधक, एंटी-बैक्टीरियल।<br><b>उपयोग:</b> मुहांसे, त्वचा रोग और शुगर में।<br><b>प्रयोग:</b> 2-3 कच्ची पत्तियां चबाएं या पेस्ट लगाएं।<br><i>⚠️ चेतावनी: गर्भवती महिलाएं अधिक सेवन न करें।</i>"
+    },
+    {
+        "question": "Benefits of Cumin Jeera in Hindi",
+        "answer": "<b>🌿 जीरा (Cumin)</b><br><b>गुण:</b> पाचक, वात नाशक।<br><b>उपयोग:</b> गैस, अपच और पेट फूलने में।<br><b>प्रयोग:</b> सुबह खाली पेट जीरे का पानी पिएं।<br><i>⚠️ चेतावनी: अधिक मात्रा में लेने से पित्त बढ़ सकता है।</i>"
+    },
+    {
+        "question": "Benefits of Aloe Vera in Hindi",
+        "answer": "<b>🌿 एलोवेरा (Ghritkumari)</b><br><b>गुण:</b> त्वचा और पेट के लिए लाभकारी।<br><b>उपयोग:</b> कब्ज दूर करता है, त्वचा को निखारता है।<br><b>प्रयोग:</b> सुबह 20ml जूस पिएं।<br><i>⚠️ चेतावनी: गर्भावस्था में सेवन से बचें।</i>"
+    },
+    {
+        "question": "Home remedy for Insomnia in Hindi",
+        "answer": "<b>🌙 नींद न आना (Insomnia)</b><br><b>लक्षण:</b> रात भर करवटें बदलना।<br><b>🌿 उपाय:</b> सोने से पहले पैरों के तलवों पर घी की मालिश करें। गर्म दूध में जायफल मिलाएं।<br><b>💊 दवा:</b> सर्पगंधा घन वटी, तगर।<br><i>⚠️ चेतावनी: सोने से पहले मोबाइल का उपयोग कम करें।</i>"
+    },
+    {
+        "question": "Home remedy for Acne in Hindi",
+        "answer": "<b>🧖‍♀️ मुहांसे (Pimples)</b><br><b>लक्षण:</b> चेहरे पर लाल दाने।<br><b>🌿 उपाय:</b> नीम और हल्दी का पेस्ट लगाएं। एलोवेरा जेल का उपयोग करें।<br><b>💊 दवा:</b> कैशोर गुग्गुलु, खदिराारिष्ट।<br><i>⚠️ चेतावनी: ज्यादा तेल-मसाले वाला भोजन न करें।</i>"
+    },
+    {
+        "question": "(Answer in Hindi): High Blood Pressure",
+        "answer": "<b>❤️ उच्च रक्तचाप (High BP)</b><br><b>लक्षण:</b> चक्कर आना, घबराहट।<br><b>🌿 उपाय:</b> लहसुन की एक कली सुबह खाएं। नमक कम करें।<br><b>💊 दवा:</b> सर्पगंधा वटी, मुक्ता वटी।<br><i>⚠️ चेतावनी: अपनी एलोपैथिक दवाएं एकदम से बंद न करें।</i>"
+    },
+    {
+        "question": "(Answer in Marathi): High Blood Pressure",
+        "answer": "<b>❤️ उच्च रक्तदाब (High BP)</b><br><b>लक्षणे:</b> चक्कर येणे, छातीत धडधडणे.<br><b>🌿 उपाय:</b> लसूण खा. आहारात मीठ कमी करा.<br><b>💊 औषध:</b> सर्पगंधा वटी, अर्जुनाारिष्ट.<br><i>⚠️ खबरदारी: डॉक्टरांच्या सल्ल्याशिवाय औषध बंद करू नका.</i>"
+    }
+]
